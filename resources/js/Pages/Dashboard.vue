@@ -1,36 +1,60 @@
 <script setup>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
-import { Collection } from 'collect.js';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
 
     <Head title="Dashboard" />
 
-    <BreezeAuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <div class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h2 class="font-semibold text-xl text-gray-800 my-auto">
                 Dashboard
             </h2>
-        </template>
+        </div>
+    </div>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        Welcome, {{ auth.user.name }}
+    <div class="flex mt-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <Link class="w-1/3" :href="route('lendees.index')">
+        <div class="max-w-7xl mx-auto sm:px-3 lg:px-4">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="px-6 pt-6 bg-teal-500 border-b border-gray-200
+                        hover:bg-teal-600 transition ease-in-out duration-300">
+                    <div class="text-white">
+                        Lendees
+                    </div>
+                    <div class="grid place-items-end">
+                        <span class="text-[64px] text-white font-extrabold">{{ lendees }}</span>
                     </div>
                 </div>
             </div>
         </div>
-    </BreezeAuthenticatedLayout>
+        </Link>
+
+        <Link class="w-1/3" :href="'#'">
+        <div class="max-w-7xl mx-auto sm:px-3 lg:px-4">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="px-6 pt-6 bg-amber-500 border-b border-gray-200
+                        hover:bg-amber-600 transition ease-in-out duration-300">
+                    <div class="text-white">
+                        Active loans
+                    </div>
+                    <div class="grid place-items-end">
+                        <span class="text-[64px] text-white font-extrabold">{{ active_loans }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </Link>
+    </div>
 </template>
 
 <script>
 export default {
     props: {
-        auth: Object
+        auth: Object,
+        lendees: Number,
+        active_loans: Number,
     }
 }
 </script>
