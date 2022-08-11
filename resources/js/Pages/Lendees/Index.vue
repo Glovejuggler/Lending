@@ -22,14 +22,14 @@
     </div>
 
     <div class="pt-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <BreezeInput v-model="search" class="mt-1 block w-96" type="text" placeholder="Search..." />
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <BreezeInput v-model="search" class="mt-1 block lg:w-96 w-full" type="text" placeholder="Search..." />
         </div>
     </div>
 
     <div class="py-4">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table-fixed w-full text-sm whitespace-nowrap">
                         <thead>
@@ -42,7 +42,7 @@
                         <tbody>
                             <tr v-for="lendee in lendees.data" class="hover:bg-neutral-200 group">
                                 <td class="rounded-l-lg">
-                                    <Link class="flex p-3" as="button" :href="route('lendees.show', lendee.id)">
+                                    <Link class="flex p-3" :href="route('lendees.show', lendee.id)">
                                     {{ lendee.name }}
                                     </Link>
                                 </td>

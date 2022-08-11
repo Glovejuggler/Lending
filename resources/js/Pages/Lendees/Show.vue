@@ -36,9 +36,9 @@
         </div>
     </div>
 
-    <div class="flex pt-12 max-w-7xl mx-auto sm:px-3 lg:px-4">
-        <div class="mx-4" :class="loan ? 'w-2/3' : 'w-full'">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="lg:flex pt-12 max-w-7xl mx-auto sm:px-3 lg:px-4">
+        <div class="mx-4" :class="loan ? 'lg:w-2/3' : 'lg:w-full'">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <span class="uppercase font-bold block text-gray-800">{{ lendee.name }}</span>
                     <span class="">{{ lendee.address }}</span>
@@ -82,8 +82,8 @@
             </div>
         </div>
 
-        <div class="w-1/3 mx-4" v-if="loan">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="lg:w-1/3 mx-4 lg:mt-0 mt-4" v-if="loan">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200 flex">
 
                     <div class="w-full">
@@ -110,10 +110,10 @@
         </div>
     </div>
 
-    <div class="my-8 max-w-7xl mx-auto sm:px-6 lg:px-8" v-if="loan">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="lg:mt-8 mt-4 max-w-7xl mx-auto px-4 sm:px-7 lg:px-8" v-if="loan">
+        <div class="bg-white overflow-hidden shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-                <table class="table-auto w-full text-left text-sm">
+                <table class="table-auto w-full text-left text-sm overflow-x-auto">
                     <thead>
                         <tr class="uppercase">
                             <th class="pb-3">Date</th>
