@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="md:flex pt-12 max-w-7xl mx-auto px-3 lg:px-4">
+    <div class="lg:flex pt-12 max-w-7xl mx-auto px-3 lg:px-4">
         <div class="mx-4" :class="loan ? 'lg:w-2/3' : 'lg:w-full'">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">

@@ -1655,6 +1655,10 @@ select {
     margin-top: 2rem;
   }
 
+  .lg\:flex {
+    display: flex;
+  }
+
   .lg\:w-96 {
     width: 24rem;
   }

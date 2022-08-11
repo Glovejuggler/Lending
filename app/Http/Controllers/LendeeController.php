@@ -97,7 +97,7 @@ class LendeeController extends Controller
      * @param  \App\Models\Lendee  $lendee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lendee $lendee)
+    public function update(StoreLendeeRequest $request, Lendee $lendee)
     {
         $lendee->name = $request->name;
         $lendee->address = $request->address;

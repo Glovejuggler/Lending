@@ -22251,7 +22251,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit ");
 
 var _hoisted_7 = {
-  "class": "md:flex pt-12 max-w-7xl mx-auto px-3 lg:px-4"
+  "class": "lg:flex pt-12 max-w-7xl mx-auto px-3 lg:px-4"
 };
 var _hoisted_8 = {
   "class": "bg-white overflow-hidden shadow-sm rounded-lg"
