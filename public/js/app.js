@@ -19824,7 +19824,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.isOpened = this.isMenuOpen;
+    var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+    console.log(width);
+    this.isOpened = width > 768 ? this.isMenuOpen : this.isOpened;
+    window.document.body.style.paddingLeft = this.isOpened ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody;
   },
   computed: {
     cssVars: function cssVars() {
@@ -21761,7 +21764,7 @@ var _hoisted_2 = {
   "class": "md:flex mt-12 max-w-7xl mx-auto sm:px-6 lg:px-8"
 };
 var _hoisted_3 = {
-  "class": "max-w-7xl mx-auto sm:p-3 lg:p-4 py-6 px-4"
+  "class": "max-w-7xl mx-auto p-3 lg:p-4"
 };
 var _hoisted_4 = {
   "class": "bg-white overflow-hidden shadow-sm rounded-lg"
@@ -21783,7 +21786,7 @@ var _hoisted_8 = {
   "class": "text-[64px] text-white font-extrabold"
 };
 var _hoisted_9 = {
-  "class": "max-w-7xl mx-auto sm:p-3 lg:p-4 py-6 px-4"
+  "class": "max-w-7xl mx-auto p-3 lg:p-4"
 };
 var _hoisted_10 = {
   "class": "bg-white overflow-hidden shadow-sm rounded-lg"
@@ -22094,13 +22097,13 @@ var _hoisted_6 = {
   "class": "pt-6"
 };
 var _hoisted_7 = {
-  "class": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+  "class": "max-w-7xl mx-auto px-6 lg:px-8"
 };
 var _hoisted_8 = {
   "class": "py-4"
 };
 var _hoisted_9 = {
-  "class": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+  "class": "max-w-7xl mx-auto px-6 lg:px-8"
 };
 var _hoisted_10 = {
   "class": "bg-white overflow-hidden shadow-sm rounded-lg"
@@ -22248,7 +22251,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit ");
 
 var _hoisted_7 = {
-  "class": "lg:flex pt-12 max-w-7xl mx-auto sm:px-3 lg:px-4"
+  "class": "md:flex pt-12 max-w-7xl mx-auto px-3 lg:px-4"
 };
 var _hoisted_8 = {
   "class": "bg-white overflow-hidden shadow-sm rounded-lg"
@@ -22408,7 +22411,7 @@ var _hoisted_45 = {
 };
 var _hoisted_46 = {
   key: 0,
-  "class": "lg:mt-8 mt-4 max-w-7xl mx-auto px-4 sm:px-7 lg:px-8"
+  "class": "lg:mt-8 mt-4 max-w-7xl mx-auto px-6 lg:px-8"
 };
 var _hoisted_47 = {
   "class": "bg-white overflow-hidden shadow-sm rounded-lg"

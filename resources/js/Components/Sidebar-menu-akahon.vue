@@ -176,7 +176,10 @@ export default {
     }
   },
   mounted() {
-    this.isOpened = this.isMenuOpen
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    console.log(width);
+    this.isOpened = width > 768 ? this.isMenuOpen : this.isOpened;
+    window.document.body.style.paddingLeft = this.isOpened ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody;
   },
   computed: {
     cssVars() {

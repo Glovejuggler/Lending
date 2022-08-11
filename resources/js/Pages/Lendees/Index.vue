@@ -22,13 +22,13 @@
     </div>
 
     <div class="pt-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <BreezeInput v-model="search" class="mt-1 block lg:w-96 w-full" type="text" placeholder="Search..." />
         </div>
     </div>
 
     <div class="py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table-fixed w-full text-sm whitespace-nowrap">
