@@ -6,6 +6,7 @@ use App\Models\Loan;
 use App\Models\Lendee;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Request;
+use App\Http\Requests\StoreLendeeRequest;
 
 class LendeeController extends Controller
 {
@@ -45,7 +46,7 @@ class LendeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLendeeRequest $request)
     {
         $lendee = Lendee::create([
             'name' => $request->name,
