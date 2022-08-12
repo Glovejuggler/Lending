@@ -14,4 +14,10 @@
 
 //! Menu settings
 
+//! Profile detailes
+
 //! Styles
+
+//! moment.js
+
+//! moment.js locale configuration
