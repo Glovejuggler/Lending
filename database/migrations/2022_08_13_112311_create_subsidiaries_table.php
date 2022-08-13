@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoansTable extends Migration
+class CreateSubsidiariesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,8 @@ class CreateLoansTable extends Migration
      */
     public function up()
     {
-        Schema::create('loans', function (Blueprint $table) {
+        Schema::create('subsidiaries', function (Blueprint $table) {
             $table->id();
-            $table->integer('lendee_id');
-            $table->integer('principal');
-            $table->integer('rate');
-            $table->integer('term');
-            $table->integer('amortization');
-            $table->date('maturity');
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ class CreateLoansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loans');
+        Schema::dropIfExists('subsidiaries');
     }
 }

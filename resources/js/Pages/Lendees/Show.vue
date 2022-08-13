@@ -91,7 +91,7 @@
                         <span class="">{{ start_month }} to {{ end_month }}</span>
 
                         <div class="mt-8">
-                            <span class="text-sm uppercase font-bold text-gray-800 block">Monthly payment</span>
+                            <span class="text-sm uppercase font-bold text-gray-800 block">Payments</span>
                             <span class="">{{ Math.round(monthly_payment).toLocaleString() }}</span>
                         </div>
 
@@ -125,7 +125,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="payment in payments">
-                            <td class="text-sm pt-2">{{ format_dateMY(payment.month) }}</td>
+                            <td class="text-sm pt-2">{{ format_dateMDY(payment.month) }}</td>
                             <td class="text-sm pt-2"></td>
                             <td class="text-sm pt-2"></td>
                             <td class="text-sm pt-2"></td>
@@ -164,9 +164,9 @@ export default {
         return {
             interest: props.loan?.principal * (props.loan?.rate / 100),
             receivable: props.loan?.principal * (1 + props.loan?.rate / 100),
-            monthly_payment: (props.loan?.principal * (1 + props.loan?.rate / 100)) / props.loan?.term,
-            monthly_principal: props.loan?.principal / props.loan?.term,
-            monthly_interest: (props.loan?.principal * (props.loan?.rate / 100)) / props.loan?.term,
+            monthly_payment: (props.loan?.principal * (1 + props.loan?.rate / 100)) / props.loan?.amortization,
+            monthly_principal: props.loan?.principal / props.loan?.amortization,
+            monthly_interest: (props.loan?.principal * (props.loan?.rate / 100)) / props.loan?.amortization,
             start_month: this.format_dateMDY(props.payments[0]?.month),
             end_month: this.format_dateMDY(props.payments[props.payments?.length - 1]?.month),
         }

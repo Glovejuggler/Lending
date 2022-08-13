@@ -19,25 +19,31 @@
                     <form @submit.prevent="form.post(route('loans.store'))">
                         <div>
                             <BreezeLabel for="principal" value="Principal" />
-                            <BreezeInput autofocus id="principal" type="text" class="mt-1 block w-96"
+                            <BreezeInput autofocus id="principal" type="text" class="mt-1 block w-full lg:w-96"
                                 v-model="form.principal" />
                             <div v-if="errors.principal" class="text-red-600">{{ errors.principal }}</div>
                         </div>
 
                         <div class="mt-5">
                             <BreezeLabel for="rate" value="Rate (%)" />
-                            <BreezeInput id="rate" type="text" class="mt-1 block w-96" v-model="form.rate" />
+                            <BreezeInput id="rate" type="text" class="mt-1 block w-full lg:w-96" v-model="form.rate" />
                         </div>
 
                         <div class="mt-5">
                             <BreezeLabel for="term" value="Term" />
-                            <BreezeInput id="term" type="text" class="mt-1 block w-96" v-model="form.term" />
+                            <BreezeInput id="term" type="text" class="mt-1 block w-full lg:w-96" v-model="form.term" />
                         </div>
 
                         <div class="mt-5">
                             <BreezeLabel for="amortization" value="Amortization" />
-                            <BreezeInput id="amortization" type="text" class="mt-1 block w-96"
+                            <BreezeInput id="amortization" type="text" class="mt-1 block w-full lg:w-96"
                                 v-model="form.amortization" />
+                        </div>
+
+                        <div class="mt-5">
+                            <BreezeLabel for="maturity" value="Maturity date" />
+                            <BreezeInput id="maturity" type="date" class="mt-1 block w-full lg:w-96"
+                                v-model="form.maturity" />
                         </div>
 
                         <div>
@@ -71,7 +77,8 @@ export default {
             principal: '',
             rate: '',
             term: '',
-            amortization: ''
+            amortization: '',
+            maturity: ''
         })
 
         return { form }

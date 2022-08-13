@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Loan;
 use App\Models\Lendee;
 use App\Models\Payment;
@@ -67,6 +68,7 @@ class LendeeController extends Controller
     public function show(Lendee $lendee)
     {
         $loan = Loan::where('lendee_id','=',$lendee->id)->latest()->first();
+        // dd(Carbon::parse($loan->maturity)->addDays(15));
 
         $payments = Payment::where('loan_id', $loan?->id)->get();
 

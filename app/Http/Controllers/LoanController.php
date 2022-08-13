@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Loan;
 use App\Models\Lendee;
 use App\Models\Payment;
@@ -45,12 +46,18 @@ class LoanController extends Controller
         $lendee = Lendee::find($request->lendee_id);
 
         $loan = Loan::create($request->validated());
+        $pays = $loan->amortization / $loan->term;
 
-        for($x = 0; $x <= $loan->term; $x++){
+        for ($x = 0; $x < $loan->amortization; $x++) {
+            $month = $pays == 1 ? Carbon::parse($loan->maturity) : Carbon::parse($loan->maturity);
             $payment = new Payment;
 
             $payment->loan_id = $loan->id;
-            $payment->month = now()->addMonths($x);
+            if($pays == 1){
+                $payment->month = $month->addMonths($x);
+            } else {
+                $payment->month = 0;
+            }
 
             $payment->save();
         }

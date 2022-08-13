@@ -28,7 +28,8 @@ class StoreLoanRequest extends FormRequest
             'principal' => 'required|numeric',
             'rate' => 'required|numeric',
             'term' => 'required|numeric',
-            'amortization' => 'required|numeric'
+            'amortization' => 'required|numeric',
+            'maturity' => 'required|date'
         ];
     }
 }

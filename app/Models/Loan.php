@@ -12,7 +12,8 @@ class Loan extends Model
         'principal',
         'rate',
         'term',
-        'amortization'
+        'amortization',
+        'maturity'
     ];
 
     protected $attributes = [
