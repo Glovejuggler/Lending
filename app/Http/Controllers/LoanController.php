@@ -49,14 +49,25 @@ class LoanController extends Controller
         $pays = $loan->amortization / $loan->term;
 
         for ($x = 0; $x < $loan->amortization; $x++) {
-            $month = $pays == 1 ? Carbon::parse($loan->maturity) : Carbon::parse($loan->maturity);
             $payment = new Payment;
 
             $payment->loan_id = $loan->id;
-            if($pays == 1){
+
+            if ($pays == 1) {
+                $month = Carbon::parse($loan->maturity);
                 $payment->month = $month->addMonths($x);
             } else {
-                $payment->month = 0;
+                $day = Carbon::parse($loan->maturity)->day;
+                $first = $day < 16 ? 15 : 30;
+                $next = $day < 16 ? 30 : 15;
+
+                if ($x % 2 == 0) {
+                    $monthDate = Carbon::parse($loan->maturity)->addMonths($day < 16 ? $x : $x-1);
+                    $payment->month = Carbon::create($monthDate->year, $monthDate->month, $first);
+                } else {
+                    $monthDate = Carbon::parse($loan->maturity)->addMonths($day < 16 ? $x : $x-1);
+                    $payment->month = Carbon::create($monthDate->year, $monthDate->month, $next);
+                }
             }
 
             $payment->save();
