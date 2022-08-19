@@ -36,7 +36,7 @@ class Loan extends Model
 
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class)->orderBy('created_at', 'asc');
     }
 
     public function total_payments()
