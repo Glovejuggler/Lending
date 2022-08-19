@@ -34,10 +34,10 @@ class Payment extends Model
 
     public function getBalanceAttribute()
     {
-        $bal = $this->loan->principal * (1 + ($this->loan->rate/100));
+        $bal = $this->loan->receivable;
         $dp = Carbon::parse($this->date_paid);
 
-        $payments = Payment::whereDate('date_paid','<=',$dp)->get();
+        $payments = Payment::where('loan_id','=',$this->loan_id)->whereDate('date_paid','<=',$dp)->get();
         foreach ($payments as $payment) {
             $bal -= $payment->payment;
         }
