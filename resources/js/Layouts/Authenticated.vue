@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100" style="transition: all 0.5s ease">
             <SidebarMenuAkahon />
 
             <!-- Page Content -->
@@ -17,9 +17,6 @@ import SidebarMenuAkahon from '@/Components/Sidebar-menu-akahon.vue';
 export default {
     components: {
         SidebarMenuAkahon
-    },
-    props: {
-
-    },
+    }
 }
 </script>

@@ -68,14 +68,12 @@ class LendeeController extends Controller
     public function show(Lendee $lendee)
     {
         $loan = Loan::where('lendee_id','=',$lendee->id)->latest()->first();
-        // dd(Carbon::parse($loan->maturity)->addDays(15));
-
-        $payments = Payment::where('loan_id', $loan?->id)->get();
+        // dd($loan);
 
         return inertia('Lendees/Show', [
             'lendee' => $lendee,
             'loan' => $loan,
-            'payments' => $payments
+            'bal' => $loan?->receivable - $loan?->total_payments(),
         ]);
     }
 

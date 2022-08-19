@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Loan;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -57,7 +59,10 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return inertia('Payment/Edit', [
+            'payment' => $payment,
+            'lendee' => $payment->loan->lendee
+        ]);
     }
 
     /**
@@ -69,7 +74,19 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $request->validate([
+            'payment' => 'required|numeric',
+            'date_paid' => 'required'
+        ]);
+
+        // dd($request);
+
+        $payment->payment = $request->payment;
+        $payment->date_paid = Carbon::parse($request->date_paid);
+
+        $payment->update();
+
+        return redirect()->route('lendees.show', $request->lendee_id);
     }
 
     /**

@@ -3,7 +3,7 @@
     <Head title="Loan" />
 
     <div class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto py-6 px-4 px-6 lg:px-8">
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 my-auto">
                     Loan for {{ lendee.name }}
@@ -13,8 +13,8 @@
     </div>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <form @submit.prevent="form.post(route('loans.store'))">
                         <div>
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="mt-5">
-                            <BreezeLabel for="maturity" value="Maturity date" />
+                            <BreezeLabel for="maturity" value="Starting date of payment" />
                             <BreezeInput id="maturity" type="date" class="mt-1 block w-full lg:w-96"
                                 v-model="form.maturity" />
                         </div>

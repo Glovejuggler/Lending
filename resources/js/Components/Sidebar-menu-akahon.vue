@@ -62,7 +62,7 @@ export default {
     },
     menuTitle: {
       type: String,
-      default: 'Alcantara',
+      default: 'Lending',
     },
     menuLogo: {
       type: String,
@@ -177,7 +177,6 @@ export default {
   },
   mounted() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    console.log(width);
     this.isOpened = width > 768 ? this.isMenuOpen : this.isOpened;
     window.document.body.style.paddingLeft = this.isOpened ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody;
   },

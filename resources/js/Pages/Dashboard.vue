@@ -15,7 +15,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
     </div>
 
     <div class="md:flex mt-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <Link class="w-1/3" :href="route('lendees.index')">
+        <Link class="w-1/4" :href="route('lendees.index')">
         <div class="max-w-7xl mx-auto p-3 lg:p-4">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="px-6 pt-6 bg-teal-500 border-b border-gray-200
@@ -31,16 +31,48 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
         </div>
         </Link>
 
-        <Link class="w-1/3" :href="'#'">
+        <Link class="w-1/4" :href="'#'">
         <div class="max-w-7xl mx-auto p-3 lg:p-4">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-                <div class="px-6 pt-6 bg-amber-500 border-b border-gray-200
-                        hover:bg-amber-600 transition ease-in-out duration-300">
+                <div class="px-6 pt-6 bg-blue-500 border-b border-gray-200
+                        hover:bg-blue-600 transition ease-in-out duration-300">
                     <div class="text-white">
                         Active loans
                     </div>
                     <div class="grid place-items-end">
                         <span class="text-[64px] text-white font-extrabold">{{ active_loans }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </Link>
+
+        <Link class="w-1/4" :href="'#'">
+        <div class="max-w-7xl mx-auto p-3 lg:p-4">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+                <div class="px-6 pt-6 bg-red-500 border-b border-gray-200
+                        hover:bg-red-600 transition ease-in-out duration-300">
+                    <div class="text-white">
+                        Overdue payments
+                    </div>
+                    <div class="grid place-items-end">
+                        <span class="text-[64px] text-white font-extrabold">{{ overdue_payments }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </Link>
+
+        <Link class="w-1/4" :href="'#'">
+        <div class="max-w-7xl mx-auto p-3 lg:p-4">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+                <div class="px-6 pt-6 bg-amber-500 border-b border-gray-200
+                        hover:bg-amber-600 transition ease-in-out duration-300">
+                    <div class="text-white">
+                        Payments due today
+                    </div>
+                    <div class="grid place-items-end">
+                        <span class="text-[64px] text-white font-extrabold">{{ due_payments }}</span>
                     </div>
                 </div>
             </div>
@@ -55,6 +87,8 @@ export default {
         auth: Object,
         lendees: Number,
         active_loans: Number,
+        overdue_payments: Number,
+        due_payments: Number,
     }
 }
 </script>
