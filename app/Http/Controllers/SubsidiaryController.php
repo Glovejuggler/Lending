@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lendee;
 use App\Models\Subsidiary;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,15 @@ class SubsidiaryController extends Controller
      */
     public function index()
     {
-        //
+        // dd(Lendee::select('address')->distinct()->get());
+        // dd(Lendee::all()->groupBy('address'));
+        // dd(Lendee::groupBy('address')->selectRaw('count(*) as total, address')->get());
+
+        return inertia('Subsidiaries/Index', [
+            'subsidiaries' => Lendee::groupBy('address')
+                                    ->selectRaw('count(*) as total, address')
+                                    ->get(),
+        ]);
     }
 
     /**
@@ -44,9 +53,13 @@ class SubsidiaryController extends Controller
      * @param  \App\Models\Subsidiary  $subsidiary
      * @return \Illuminate\Http\Response
      */
-    public function show(Subsidiary $subsidiary)
+    public function show($subsidiary)
     {
-        //
+        // dd(Lendee::where('address', $subsidiary)->with('loan')->get());
+
+        return inertia('Subsidiaries/Show', [
+            'lendees' => Lendee::where('address', $subsidiary)->with('loan')->get()
+        ]);
     }
 
     /**

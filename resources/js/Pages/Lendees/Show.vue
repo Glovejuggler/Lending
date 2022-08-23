@@ -37,11 +37,26 @@
     </div>
 
     <div class="lg:flex pt-12 max-w-7xl mx-auto px-3 lg:px-4">
-        <div class="mx-4" :class="loan ? 'lg:w-2/3' : 'lg:w-full'">
+        <div class="mx-4 group" :class="loan ? 'lg:w-2/3' : 'lg:w-full'">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <span class="uppercase font-bold block text-gray-800">{{ lendee.name }}</span>
-                    <span class="">{{ lendee.address }}</span>
+                    <div class="flex justify-between">
+                        <div>
+                            <span class="uppercase font-bold block text-gray-800">{{ lendee.name }}</span>
+                            <span class="">{{ lendee.address }}</span>
+                        </div>
+                        <div v-if="loan">
+                            <Link class="text-green-500 items-center p-2 inline-flex hover:bg-gray-300 rounded-full"
+                                :href="'#'">
+                            <i class="bx bx-edit lg:invisible group-hover:lg:visible"></i>
+                            </Link>
+
+                            <Link class="text-red-500 items-center p-2 inline-flex hover:bg-gray-300 rounded-full"
+                                :href="'#'">
+                            <i class="bx bx-trash lg:invisible group-hover:lg:visible"></i>
+                            </Link>
+                        </div>
+                    </div>
 
                     <div class="mt-8 flex" v-if="loan">
                         <div class="w-1/2">
@@ -110,7 +125,7 @@
         </div>
     </div>
 
-    <div class="lg:mt-8 mt-4 max-w-7xl mx-auto px-7 lg:px-8 pb-4" v-if="loan">
+    <div class="lg:mt-8 mt-4 max-w-7xl mx-auto px-7 lg:px-8" v-if="loan">
         <div class="bg-white overflow-x-auto shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <table class="table-auto w-full text-left text-sm">
@@ -161,27 +176,79 @@
         </div>
     </div>
 
+    <div class="lg:mt-8 mt-4 max-w-7xl mx-auto px-7 lg:px-8 pb-4 group" v-if="loan">
+        <div class="bg-white overflow-x-auto shadow-sm rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <div class="flex justify-between">
+                    <span class="font-bold">Others</span>
+                    <form @submit.prevent="submit">
+                        <label class="flex">
+                            <span class="sr-only">Choose files</span>
+                            <input type="file" name="file" accept="image/*" @input="fileform.file = $event.target.files"
+                                class="block w-full text-sm text-slate-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-gray-50 file:text-gray-700
+                                hover:file:bg-gray-100
+                                " multiple />
+                            <button :disabled="fileform.processing" type="submit"
+                                class="text-sm uppercase rounded-lg text-white font-semibold bg-gray-800 px-3">Upload</button>
+                        </label>
+                    </form>
+                </div>
+                <div class="lg:flex lg:flex-wrap mt-4">
+                    <div v-for="pic in pics" class="basis-1/4 p-1 cursor-pointer
+                        [&>div>div:nth-child(3)]:hover:z-30
+                        [&>div>div:nth-child(3)]:hover:translate-x-0
+                        [&>div>img]:hover:scale-125
+                        [&>div>img]:hover:opacity-75">
+                        <div class="relative h-48 rounded-lg overflow-hidden content-center">
+                            <img :src="`../${pic.path}`"
+                                class="z-20 absolute h-full w-full bg-white object-cover rounded-lg ease-in-out duration-300">
+                            <div class="z-10 absolute bg-black w-full h-full">
+                            </div>
+                            <div class="absolute z-0 grid w-full h-full translate-x-1/4 ease-in-out duration-300"
+                                @click.self="toggleModal(pic.path)">
+                                <Link class="uppercase text-white font-bold place-self-end
+                                    inline-flex p-2 bg-red-600 hover:bg-red-500
+                                    rounded-full text-white m-3" :href="route('files.destroy', pic.id)" method="delete"
+                                    as="button" preserve-scroll>
+                                <i class="bx bx-trash text-lg"></i></Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="my-8 mx-4 flex justify-center" v-else>
         <span class="text-gray-400">No loan record</span>
     </div>
+
+    <ShowImage ref="showImageModal" />
 </template>
 
 
 <script>
 import BreezeButton from '@/Components/Button.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import moment from 'moment';
+import ShowImage from '@/Components/ShowImage.vue';
 
 export default {
     components: {
         Head,
         Link,
         BreezeButton,
+        ShowImage,
     },
     props: {
         lendee: Object,
         loan: Object,
         bal: Number,
+        pics: Object,
     },
     data(props) {
         return {
@@ -199,7 +266,27 @@ export default {
             if (value) {
                 return moment(String(value)).format('MMMM D, YYYY')
             }
+        },
+        toggleModal(value) {
+            this.$refs.showImageModal.toggleModal(value);
         }
+    },
+    setup(props) {
+        const fileform = useForm({
+            lendee_id: props.lendee.id,
+            loan_id: props.loan?.id,
+            file: [],
+        })
+
+        function submit() {
+            fileform.post('/files', {
+                preserveScroll: true,
+                preserveState: false,
+                onSuccess: () => fileform.reset('file'),
+            });
+        }
+
+        return { fileform, submit }
     }
 }
 

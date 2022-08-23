@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\File;
 use App\Models\Loan;
 use App\Models\Lendee;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreLendeeRequest;
 
 class LendeeController extends Controller
@@ -21,7 +23,8 @@ class LendeeController extends Controller
         return inertia('Lendees/Index', [
             'lendees' => Lendee::query()
                             ->when(Request::input('search'), function ($query, $search) {
-                                $query->where('name','like',"%{$search}%");
+                                $query->where('name','like',"%{$search}%")
+                                    ->orWhere('address','like',"%{$search}%");
                             })
                             ->with('loan')
                             ->orderBy('created_at','desc')
@@ -68,12 +71,13 @@ class LendeeController extends Controller
     public function show(Lendee $lendee)
     {
         $loan = Loan::where('lendee_id','=',$lendee->id)->latest()->first();
-        // dd($loan);
+        // dd(Storage::url('4/iroha cutout copy.png'));
 
         return inertia('Lendees/Show', [
             'lendee' => $lendee,
             'loan' => $loan,
             'bal' => $loan?->receivable - $loan?->total_payments(),
+            'pics' => File::where('loan_id', $loan?->id)->get(),
         ]);
     }
 

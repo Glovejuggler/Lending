@@ -6,9 +6,11 @@ use App\Models\Lendee;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LendeeController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SubsidiaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,14 +46,13 @@ Route::get('/dashboard', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('lendees', [LendeeController::class, 'index'])->name('lendees.index');
-// Route::get('lendee/create', [LendeeController::class, 'create'])->name('lendee.create');
-
 Route::resource('lendees', LendeeController::class);
 
 Route::resource('loans', LoanController::class);
-// Route::get('loan/payment/{payment}', [PaymentController::class, 'edit'])->name('payment.edit');
+
 Route::resource('payment', PaymentController::class);
+Route::resource('files', FileController::class);
+Route::resource('subsidiaries', SubsidiaryController::class);
 
 Route::get('/loans/create/{id}', [LoanController::class, 'create'])->name('loans.create');
 

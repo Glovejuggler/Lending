@@ -103,6 +103,13 @@ export default {
           icon: 'bx-user',
           parent: 'Lendees',
         },
+        {
+          link: route('subsidiaries.index'),
+          name: 'Subsidiaries',
+          tooltip: 'Subsidiaries',
+          icon: 'bx-hive',
+          parent: 'Subsidiaries',
+        },
       ],
     },
 
@@ -239,7 +246,7 @@ body {
   width: 78px;
   background: var(--bg-color);
   /* padding: 6px 14px 0 14px; */
-  z-index: 99;
+  z-index: 1;
   transition: all 0.5s ease;
 }
 
