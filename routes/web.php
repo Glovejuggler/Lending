@@ -30,9 +30,9 @@ Route::get('/', function () {
     //     'laravelVersion' => Application::VERSION,
     //     'phpVersion' => PHP_VERSION,
     // ]);
-        return Inertia::render('Home');
+        // return Inertia::render('Home');
 
-    // return redirect()->route('login');
+    return view('pages.home');
 })->name('home');
 
 Route::get('/dashboard', function () {

@@ -20,17 +20,17 @@ class LendeeController extends Controller
      */
     public function index()
     {
+        // dd(Lendee::with(['loan' => function ($query) {
+        //     $query->orderBy('id', 'asc');
+        // }])->get());
+
         return inertia('Lendees/Index', [
             'lendees' => Lendee::query()
-                            ->when(Request::input('search'), function ($query, $search) {
-                                $query->where('name','like',"%{$search}%")
-                                    ->orWhere('address','like',"%{$search}%");
-                            })
+                            ->filter(Request::only('search', 'status'))
                             ->with('loan')
-                            ->orderBy('created_at','desc')
                             ->paginate(10)
                             ->withQueryString(),
-            'filters' => Request::only(['search']),
+            'filters' => Request::only(['search', 'status']),
         ]);
     }
 

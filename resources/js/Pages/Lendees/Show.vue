@@ -227,6 +227,12 @@
         <span class="text-gray-400">No loan record</span>
     </div>
 
+    <div class="pb-4 max-w-7xl mx-auto lg:px-8 flex justify-end" v-if="loan?.is_fully_paid">
+        <Link :href="'#'" as="button"
+            class="text-red-500 text-xs uppercase font-semibold p-2 border border-red-500 rounded-lg hover:bg-red-500 hover:text-white ease-out duration-300"
+            preserve-scroll>idk what to put here lmao, shown when loan is fully paid to settle(?) the loan</Link>
+    </div>
+
     <ShowImage ref="showImageModal" />
 </template>
 

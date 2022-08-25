@@ -19,4 +19,33 @@ class Lendee extends Model
     {
         return $this->hasOne(Loan::class)->latestOfMany();
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('address', 'like', '%'.$search.'%');
+            });
+        })->when($filters['status'] ?? null, function ($query, $status) {
+            if ($status === 'active') {
+                $query->whereHas('loan');
+            } elseif ($status === 'inactive') {
+                $query->whereDoesntHave('loan');
+            } elseif ($status === 'overdue') {
+                $query->whereHas('loan', function ($q) {
+                    $q->whereHas('payments', function ($q) {
+                        $q->whereDate('month','<',now())
+                            ->where('payment',null);
+                    });
+                });
+            } elseif ($status === 'dueToday') {
+                $query->whereHas('loan', function ($q) {
+                    $q->whereHas('payments', function ($q) {
+                        $q->whereDate('month','=',now());
+                    });
+                });
+            }
+        });
+    }
 }

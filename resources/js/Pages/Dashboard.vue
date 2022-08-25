@@ -31,7 +31,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
         </div>
         </Link>
 
-        <Link class="w-1/4" :href="'#'">
+        <Link class="w-1/4" href="/lendees?status=active">
         <div class="max-w-7xl mx-auto p-3 lg:p-4">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="px-6 pt-6 bg-blue-500 border-b border-gray-200
@@ -47,7 +47,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
         </div>
         </Link>
 
-        <Link class="w-1/4" :href="'#'">
+        <Link class="w-1/4" href="/lendees?status=overdue">
         <div class="max-w-7xl mx-auto p-3 lg:p-4">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="px-6 pt-6 bg-red-500 border-b border-gray-200
@@ -63,7 +63,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
         </div>
         </Link>
 
-        <Link class="w-1/4" :href="'#'">
+        <Link class="w-1/4" href="/lendees?status=dueToday">
         <div class="max-w-7xl mx-auto p-3 lg:p-4">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="px-6 pt-6 bg-amber-500 border-b border-gray-200
@@ -89,6 +89,6 @@ export default {
         active_loans: Number,
         overdue_payments: Number,
         due_payments: Number,
-    }
+    },
 }
 </script>
