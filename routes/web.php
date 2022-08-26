@@ -52,6 +52,7 @@ Route::resource('loans', LoanController::class);
 
 Route::resource('payment', PaymentController::class);
 Route::resource('files', FileController::class);
+Route::get('/download/{id}', [FileController::class, 'download'])->name('file.download');
 Route::resource('subsidiaries', SubsidiaryController::class);
 
 Route::get('/loans/create/{id}', [LoanController::class, 'create'])->name('loans.create');

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" :class="isOpened ? 'open' : ''" :style="cssVars">
+  <div v-if="width > 768" class="sidebar" :class="isOpened ? 'open' : ''" :style="cssVars">
     <div class="logo-details" style="margin: 6px 14px 0 14px;">
       <img v-if="menuLogo" :src="menuLogo" alt="menu-logo" class="menu-logo icon">
       <i v-else class="bx icon" :class="menuIcon" />
@@ -15,7 +15,7 @@
         <ul class="nav-list" style="overflow: visible;">
 
           <span v-for="(menuItem, index) in menuItems" :key="index">
-            <li>
+            <li v-if="$page.props.auth.is_admin ? 1 : $page.props.auth.is_admin == menuItem.admin">
               <Link :href="menuItem.link" :class="{ 'active': $page.component.startsWith(menuItem.parent) }">
               <i class="bx" :class="menuItem.icon || 'bx-square-rounded'" />
               <span class="links_name">{{ menuItem.name }}</span>
@@ -27,7 +27,7 @@
       </div>
       <div v-if="isLoggedIn" class="profile">
         <div class="profile-details">
-          <img v-if="profileImg" src="images/photo.jpg" alt="profileImg">
+          <img v-if="profileImg" src="/images/photo.jpg" alt="profileImg">
           <i v-else class="bx bxs-user-rectangle" />
           <div class="name_job">
             <div class="name">
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { whileStatement } from '@babel/types';
 import { Link } from '@inertiajs/inertia-vue3';
 
 export default {
@@ -95,6 +96,7 @@ export default {
           tooltip: 'Dashboard',
           icon: 'bx-grid-alt',
           parent: 'Dashboard',
+          admin: false
         },
         {
           link: route('lendees.index'),
@@ -102,6 +104,7 @@ export default {
           tooltip: 'Lendees',
           icon: 'bx-user',
           parent: 'Lendees',
+          admin: true
         },
         {
           link: route('subsidiaries.index'),
@@ -109,6 +112,7 @@ export default {
           tooltip: 'Subsidiaries',
           icon: 'bx-hive',
           parent: 'Subsidiaries',
+          admin: true
         },
       ],
     },
@@ -116,7 +120,7 @@ export default {
     //! Profile detailes
     profileImg: {
       type: String,
-      default: require('../../assets/img/photo.jpg'),
+      default: '/assets/img/photo.jpg',
     },
     profileName: {
       type: String,
@@ -179,13 +183,15 @@ export default {
   },
   data() {
     return {
-      isOpened: false
+      isOpened: false,
+      width: window.innerWidth ?? screen.width
     }
   },
   mounted() {
-    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    var width = window.innerWidth ?? screen.width;
     this.isOpened = width > 768 ? this.isMenuOpen : this.isOpened;
-    window.document.body.style.paddingLeft = this.isOpened ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody;
+    document.getElementById('main').style.paddingLeft = this.isOpened ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody;
+    window.addEventListener("resize", this.beResponsive);
   },
   computed: {
     cssVars() {
@@ -206,9 +212,21 @@ export default {
   },
   watch: {
     isOpened() {
-      window.document.body.style.paddingLeft = this.isOpened && this.isPaddingLeft ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody
+      document.getElementById('main').style.paddingLeft = this.isOpened && this.isPaddingLeft ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody
     }
   },
+  methods: {
+    beResponsive() {
+      this.width = window.innerWidth ?? screen.width;
+      if (this.width > 900) {
+        this.isOpened = true;
+      } else if (this.width > 768) {
+        this.isOpened = false;
+      } else {
+        document.getElementById('main').style.paddingLeft = '0px';
+      }
+    }
+  }
 }
 </script>
 
@@ -224,7 +242,7 @@ export default {
   font-family: 'Poppins', sans-serif;
 }
 
-body {
+main {
   transition: all 0.5s ease;
 }
 
@@ -246,7 +264,7 @@ body {
   width: 78px;
   background: var(--bg-color);
   /* padding: 6px 14px 0 14px; */
-  z-index: 1;
+  z-index: 30;
   transition: all 0.5s ease;
 }
 

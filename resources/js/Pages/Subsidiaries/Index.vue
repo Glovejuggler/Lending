@@ -3,7 +3,7 @@
     <Head title="Lendees" />
 
     <div class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-start">
                 <h2 class="font-semibold text-xl text-gray-800 my-auto">
                     Subsidiaries
@@ -13,7 +13,7 @@
     </div>
 
     <div class="py-8">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table-fixed w-full text-sm whitespace-nowrap">
@@ -32,7 +32,8 @@
                                 </td>
                                 <td class="rounded-r-lg">
                                     <Link class="flex p-3" :href="route('subsidiaries.show', subsidiary.address)">
-                                    {{ subsidiary.total }}
+                                    <span class="bg-black/10 px-2 rounded-lg">
+                                        {{ subsidiary.total }}</span>
                                     </Link>
                                 </td>
                             </tr>

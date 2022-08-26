@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
@@ -45,7 +47,7 @@ class FileController extends Controller
             $newFile = Storage::putFileAs(
                 'pictures/'.$request->lendee_id.'/'.$request->loan_id,
                 $file,
-                $file->getClientOriginalName()
+                Str::random(20).'.'.$file->getClientOriginalExtension()
             );
 
             $new = new File;
@@ -108,5 +110,22 @@ class FileController extends Controller
         $file->delete();
 
         return redirect()->back();
+    }
+
+    /**
+     * Download the file
+     * 
+     * @param id
+     * @return \Illuminate\Http\Response
+     */
+    public function download($id)
+    {
+        // dd(Gate::allows('isAdmin'));
+        if (Gate::allows('isAdmin')) {
+            $file = File::find($id);
+            if (Storage::exists($file->path)) {
+                return response()->download($file->path);
+            }
+        }
     }
 }

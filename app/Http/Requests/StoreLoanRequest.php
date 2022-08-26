@@ -25,10 +25,10 @@ class StoreLoanRequest extends FormRequest
     {
         return [
             'lendee_id' => 'required',
-            'principal' => 'required|numeric',
-            'rate' => 'required|numeric',
-            'term' => 'required|numeric',
-            'amortization' => 'required|numeric',
+            'principal' => 'required|numeric|max:999999',
+            'rate' => 'required|numeric|max:100',
+            'term' => 'required|numeric|max:100',
+            'amortization' => 'required|numeric|max:100',
             'maturity' => 'required|date'
         ];
     }

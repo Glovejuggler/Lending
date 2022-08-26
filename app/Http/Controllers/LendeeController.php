@@ -31,6 +31,7 @@ class LendeeController extends Controller
                             ->paginate(10)
                             ->withQueryString(),
             'filters' => Request::only(['search', 'status']),
+            'today' => now(),
         ]);
     }
 

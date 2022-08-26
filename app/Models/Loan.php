@@ -58,7 +58,8 @@ class Loan extends Model
         'interestm',
         'principalm',
         'paymentm',
-        'is_fully_paid'
+        'is_fully_paid',
+        'has_late_payment'
     ];
 
     public function getReceivableAttribute()
@@ -94,10 +95,23 @@ class Loan extends Model
             $total += $payment->payment;
         }
 
-        if ($total >= $this->receivable) {
-            return true;
-        } else {
-            return false;
+        return $total >= $this->receivable;
+    }
+
+    public function getHasLatePaymentAttribute()
+    {
+        $count = 0;
+
+        $payments = Payment::where('loan_id', $this->id)
+                            ->whereNull('payment')
+                            ->whereDate('month','!=',now())
+                            ->get();
+        foreach ($payments as $payment) {
+            if ($payment->month < now()) {
+                $count += 1;
+            }
         }
+
+        return $count;
     }
 }

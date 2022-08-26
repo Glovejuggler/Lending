@@ -7,7 +7,7 @@
     </Head>
 
     <div class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 my-auto">
                     {{ lendee.name }}
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="lg:flex pt-12 max-w-7xl mx-auto px-3 lg:px-4">
+    <div class="lg:flex pt-12 max-w-screen-2xl mx-auto px-3 lg:px-4">
         <div class="mx-4 group" :class="loan ? 'lg:w-2/3' : 'lg:w-full'">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -125,7 +125,7 @@
         </div>
     </div>
 
-    <div class="lg:mt-8 mt-4 max-w-7xl mx-auto px-7 lg:px-8" v-if="loan">
+    <div class="lg:mt-8 mt-4 max-w-screen-2xl mx-auto px-7 lg:px-8" v-if="loan">
         <div class="bg-white overflow-x-auto shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <table class="table-auto w-full text-left text-sm">
@@ -142,7 +142,10 @@
                         <tr v-for="payment in loan.payments" class="hover:bg-neutral-200 group">
                             <td class="rounded-l-lg">
                                 <div class="flex justify-between">
-                                    <span class="p-2">{{ format_dateMDY(payment.month) }}</span>
+                                    <span class="p-2"
+                                        :class="isLate(payment.month) && payment.payment == null ? 'text-red-500' : ''">{{
+                                                format_dateMDY(payment.month)
+                                        }}</span>
                                     <Link as="button" :href="route('payment.edit', payment.id, loan.id)"
                                         class="invisible group-hover:visible pr-4" preserve-scroll>
                                     <i class="bx bx-edit hover:text-green-500 text-lg"></i>
@@ -151,7 +154,11 @@
                             </td>
                             <td class="p-2">
                                 <div class="flex justify-between">
-                                    {{ format_dateMDY(payment.date_paid) }}
+                                    <div>
+                                        {{ format_dateMDY(payment.date_paid) }}
+                                        <span v-if="payment.is_late"
+                                            class="text-red-800 bg-red-200 px-2 rounded-lg">Late</span>
+                                    </div>
                                     <span class="text-green-700 pr-8">{{ payment.payment?.toLocaleString() }}</span>
                                 </div>
                             </td>
@@ -171,12 +178,14 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="flex justify-end font-bold uppercase">Remaining balance: P{{ bal.toLocaleString() }}</div>
+                <div v-if="bal > 0" class="flex justify-end font-bold uppercase">Remaining balance: P{{
+                        bal.toLocaleString()
+                }}</div>
             </div>
         </div>
     </div>
 
-    <div class="lg:mt-8 mt-4 max-w-7xl mx-auto px-7 lg:px-8 pb-4 group" v-if="loan">
+    <div class="lg:mt-8 mt-4 max-w-screen-2xl mx-auto px-7 lg:px-8 pb-4 group" v-if="loan">
         <div class="bg-white overflow-x-auto shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div class="flex justify-between">
@@ -200,16 +209,19 @@
                 <div class="lg:flex lg:flex-wrap mt-4">
                     <div v-for="pic in pics" class="basis-1/4 p-1 cursor-pointer
                         [&>div>div:nth-child(3)]:hover:z-30
+                        [&>div>div:nth-child(3)]:hover:delay-500
                         [&>div>div:nth-child(3)]:hover:translate-x-0
                         [&>div>img]:hover:scale-125
-                        [&>div>img]:hover:opacity-75">
+                        [&>div>img]:hover:opacity-75
+                        rounded-lg">
                         <div class="relative h-48 rounded-lg overflow-hidden content-center">
                             <img :src="`../${pic.path}`"
-                                class="z-20 absolute h-full w-full bg-white object-cover rounded-lg ease-in-out duration-300">
+                                class="z-20 absolute h-full w-full bg-white object-cover rounded-lg ease-in-out duration-300"
+                                @click.self="toggleModal(pic.path, pic.id)">
                             <div class="z-10 absolute bg-black w-full h-full">
                             </div>
                             <div class="absolute z-0 grid w-full h-full translate-x-1/4 ease-in-out duration-300"
-                                @click.self="toggleModal(pic.path)">
+                                @click.self="toggleModal(pic.path, pic.id)">
                                 <Link class="uppercase text-white font-bold place-self-end
                                     inline-flex p-2 bg-red-600 hover:bg-red-500
                                     rounded-full text-white m-3" :href="route('files.destroy', pic.id)" method="delete"
@@ -227,7 +239,7 @@
         <span class="text-gray-400">No loan record</span>
     </div>
 
-    <div class="pb-4 max-w-7xl mx-auto lg:px-8 flex justify-end" v-if="loan?.is_fully_paid">
+    <div class="pb-4 max-w-screen-2xl mx-auto lg:px-8 flex justify-end" v-if="loan?.is_fully_paid">
         <Link :href="'#'" as="button"
             class="text-red-500 text-xs uppercase font-semibold p-2 border border-red-500 rounded-lg hover:bg-red-500 hover:text-white ease-out duration-300"
             preserve-scroll>idk what to put here lmao, shown when loan is fully paid to settle(?) the loan</Link>
@@ -273,8 +285,13 @@ export default {
                 return moment(String(value)).format('MMMM D, YYYY')
             }
         },
-        toggleModal(value) {
-            this.$refs.showImageModal.toggleModal(value);
+        isLate(value) {
+            if (value) {
+                return moment().diff(moment(String(value)), 'days') >= 1
+            }
+        },
+        toggleModal(value, fileId) {
+            this.$refs.showImageModal.toggleModal(value, fileId);
         }
     },
     setup(props) {

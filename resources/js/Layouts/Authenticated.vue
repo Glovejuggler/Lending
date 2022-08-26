@@ -2,9 +2,9 @@
     <div>
         <div class="min-h-screen bg-gray-100" style="transition: all 0.5s ease">
             <SidebarMenuAkahon />
-
+            <div class="md:hidden flex">Lamao</div>
             <!-- Page Content -->
-            <main>
+            <main id="main">
                 <slot />
             </main>
         </div>

@@ -53,7 +53,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "bg-white shadow"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
+  "class": "max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex justify-start"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
@@ -66,7 +66,7 @@ var _hoisted_2 = {
   "class": "py-8"
 };
 var _hoisted_3 = {
-  "class": "max-w-7xl mx-auto px-6 lg:px-8"
+  "class": "max-w-screen-2xl mx-auto px-6 lg:px-8"
 };
 var _hoisted_4 = {
   "class": "bg-white overflow-hidden shadow-sm rounded-lg"
@@ -97,6 +97,9 @@ var _hoisted_9 = {
 var _hoisted_10 = {
   "class": "rounded-r-lg"
 };
+var _hoisted_11 = {
+  "class": "bg-black/10 px-2 rounded-lg"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Lendees"
@@ -120,7 +123,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       href: _ctx.route('subsidiaries.show', subsidiary.address)
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(subsidiary.total), 1
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(subsidiary.total), 1
         /* TEXT */
         )];
       }),

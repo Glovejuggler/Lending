@@ -3,7 +3,7 @@
     <Head title="Lendees" />
 
     <div class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 my-auto">
                     Lendees
@@ -22,7 +22,7 @@
     </div>
 
     <div class="pt-6">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 lg:flex justify-between">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-8 lg:flex justify-between">
             <BreezeInput v-model="form.search" class="mt-1 block lg:w-96 w-full" type="text" placeholder="Search..." />
             <select v-model="form.status"
                 class="block rounded-lg text-sm text-gray-700 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-2 lg:mt-0 w-full lg:w-auto">
@@ -36,7 +36,7 @@
     </div>
 
     <div class="py-4">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table-fixed w-full text-sm whitespace-nowrap">
@@ -61,7 +61,13 @@
                                 </td>
                                 <td class="rounded-r-lg">
                                     <Link class="flex p-3" :href="route('lendees.show', lendee.id)">
-                                    {{ lendee.loan ? 'Active' : '' }}
+                                    <span v-if="lendee.loan"
+                                        class="px-2 inline-flex rounded-lg bg-green-200 text-green-800">
+                                        Active</span>
+                                    <span v-if="lendee.loan?.has_late_payment && filters.status === 'overdue'"
+                                        class="text-red-800 rounded-full inline-flex mx-1 px-2 bg-red-200 place-items-center">
+                                        {{ lendee.loan?.has_late_payment }}
+                                    </span>
                                     </Link>
                                 </td>
                             </tr>

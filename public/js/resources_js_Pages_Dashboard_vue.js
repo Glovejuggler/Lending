@@ -57,7 +57,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "bg-white shadow"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
+  "class": "max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "font-semibold text-xl text-gray-800 my-auto"
 }, " Dashboard ")])], -1
@@ -65,7 +65,7 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_2 = {
-  "class": "md:flex mt-12 max-w-7xl mx-auto sm:px-6 lg:px-8"
+  "class": "md:flex mt-12 max-w-screen-2xl mx-auto sm:px-6 lg:px-8"
 };
 var _hoisted_3 = {
   "class": "max-w-7xl mx-auto p-3 lg:p-4"

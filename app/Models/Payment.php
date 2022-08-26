@@ -12,7 +12,7 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $appends = ['balance','principal','interest'];
+    protected $appends = ['balance','principal','interest','is_late'];
 
     public function loan()
     {
@@ -43,5 +43,12 @@ class Payment extends Model
         }
 
         return $bal;
+    }
+
+    public function getIsLateAttribute()
+    {
+        if ($this->payment) {
+            return $this->date_paid > $this->month;
+        }
     }
 }
