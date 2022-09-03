@@ -6,6 +6,7 @@
         </title>
     </Head>
 
+    <!-- Header -->
     <div class="bg-white shadow">
         <div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between">
@@ -13,6 +14,15 @@
                     {{ lendee.name }}
                 </h2>
                 <div>
+                    <Link v-if="!user" as="button" method="post" :href="route('user.store', lendee.id)" class="inline-flex cursor-pointer
+                            items-center mx-2 px-4 py-2 bg-gray-800
+                            border border-transparent rounded-md 
+                            font-semibold text-xs text-white uppercase
+                            tracking-widest hover:bg-gray-700 active:bg-gray-900
+                            focus:outline-none focus:border-gray-900
+                            focus:shadow-outline-gray transition ease-in-out duration-150">
+                    Create account
+                    </Link>
                     <Link as="button" v-if="!loan" :href="route('loans.create', lendee.id)" class="inline-flex cursor-pointer
                             items-center mx-2 px-4 py-2 bg-gray-800
                             border border-transparent rounded-md 
@@ -36,29 +46,55 @@
         </div>
     </div>
 
-    <div class="lg:flex pt-12 max-w-screen-2xl mx-auto px-3 lg:px-4">
-        <div class="mx-4 group" :class="loan ? 'lg:w-2/3' : 'lg:w-full'">
+    <!-- Lendee Information -->
+    <div class="lg:flex pt-12 max-w-screen-2xl mx-auto px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <span class="uppercase font-bold block text-gray-800 text-lg">{{ lendee.name }}</span>
+                <div class="lg:flex">
+                    <div class="w-full lg:w-1/2">
+                        <span class="block mt-3"><i class="bx bxs-home mr-1 font-bold text-lg text-gray-800"></i>{{
+                                lendee.address
+                        }}</span>
+                        <span class="block"><i class="bx bxs-contact mr-1 font-bold text-lg text-gray-800"></i>{{
+                                lendee.contact_number
+                        }}</span>
+                    </div>
+                    <div class="w-full lg:w-1/2">
+                        <span class="block lg:mt-3"><i
+                                class="bx bxs-calendar mr-1 font-bold text-lg text-gray-800"></i>{{
+                                        format_dateMDY(lendee.birthdate)
+                                }}</span>
+                        <span class="block"><i class="bx bx-hive mr-1 font-bold text-lg text-gray-800"></i>{{
+                                lendee.subsidiary
+                        }}</span>
+                    </div>
+                </div>
+                <div v-if="history > 0">
+                    <Link as="button" :href="route('lendee.view', lendee.id)"
+                        class="flex items-center rounded-lg bg-gray-900 text-white p-2 mt-4 font-semibold uppercase text-sm">
+                    <i class="bx bx-history text-lg mr-1"></i> History
+                    </Link>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loan Information -->
+    <div class="lg:flex mt-8 max-w-screen-2xl mx-auto px-6 lg:px-8" v-if="loan">
+        <div class="group lg:pr-2" :class="loan ? 'lg:w-2/3' : 'lg:w-full'">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex justify-between">
-                        <div>
-                            <span class="uppercase font-bold block text-gray-800">{{ lendee.name }}</span>
-                            <span class="">{{ lendee.address }}</span>
-                        </div>
-                        <div v-if="loan">
-                            <Link class="text-green-500 items-center p-2 inline-flex hover:bg-gray-300 rounded-full"
-                                :href="'#'">
-                            <i class="bx bx-edit lg:invisible group-hover:lg:visible"></i>
-                            </Link>
-
-                            <Link class="text-red-500 items-center p-2 inline-flex hover:bg-gray-300 rounded-full"
-                                :href="'#'">
-                            <i class="bx bx-trash lg:invisible group-hover:lg:visible"></i>
-                            </Link>
-                        </div>
+                    <div>
+                        <span class="uppercase text-gray-800 font-bold block">Loan Information</span>
+                        <span class="block text-black/60"
+                            v-if="loan.amortization / loan.term == 1 && loan.payments.length > 1">Monthly</span>
+                        <span class="block text-black/60"
+                            v-else-if="loan.amortization / loan.term == 2">Semi-monthly</span>
+                        <span class="block text-black/60" v-if="loan.payments.length == 1">One-time payment</span>
                     </div>
 
-                    <div class="mt-8 flex" v-if="loan">
+                    <div class="flex mt-8">
                         <div class="w-1/2">
                             <div>
                                 <span class="text-sm uppercase font-bold text-gray-800 block">Interest
@@ -68,7 +104,7 @@
 
                             <div class="mt-4">
                                 <span class="text-sm uppercase font-bold text-gray-800 block">Term</span>
-                                <span class="">{{ loan?.term }} months</span>
+                                <span class="">{{ loan?.term }} month{{ loan?.term > 1 ? 's' : '' }}</span>
                             </div>
 
                             <div class="mt-4">
@@ -97,7 +133,8 @@
             </div>
         </div>
 
-        <div class="lg:w-1/3 mx-4 lg:mt-0 mt-4" v-if="loan">
+        <!-- Maturity -->
+        <div class="lg:w-1/3 lg:pl-2 lg:mt-0 mt-4" v-if="loan">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200 flex">
 
@@ -125,9 +162,11 @@
         </div>
     </div>
 
-    <div class="lg:mt-8 mt-4 max-w-screen-2xl mx-auto px-7 lg:px-8" v-if="loan">
+    <!-- Payments -->
+    <div class="lg:mt-8 mt-4 max-w-screen-2xl mx-auto px-6 lg:px-8" v-if="loan">
         <div class="bg-white overflow-x-auto shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
+                <h4 class="uppercase text-gray-800 font-bold mb-4">Payments</h4>
                 <table class="table-auto w-full text-left text-sm">
                     <thead>
                         <tr class="uppercase">
@@ -139,17 +178,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="payment in loan.payments" class="hover:bg-neutral-200 group">
+                        <tr v-for="payment in loan.payments" class="hover:bg-black/[0.1] group">
                             <td class="rounded-l-lg">
                                 <div class="flex justify-between">
                                     <span class="p-2"
                                         :class="isLate(payment.month) && payment.payment == null ? 'text-red-500' : ''">{{
                                                 format_dateMDY(payment.month)
                                         }}</span>
-                                    <Link as="button" :href="route('payment.edit', payment.id, loan.id)"
-                                        class="invisible group-hover:visible pr-4" preserve-scroll>
-                                    <i class="bx bx-edit hover:text-green-500 text-lg"></i>
-                                    </Link>
+                                    <button class="text-lg invisible group-hover:visible hover:text-green-600"
+                                        @click="togglePayment(payment)"><i class="bx bx-edit"></i></button>
                                 </div>
                             </td>
                             <td class="p-2">
@@ -157,35 +194,42 @@
                                     <div>
                                         {{ format_dateMDY(payment.date_paid) }}
                                         <span v-if="payment.is_late"
-                                            class="text-red-800 bg-red-200 px-2 rounded-lg">Late</span>
+                                            class="text-red-800 bg-red-200 px-2 rounded-lg mr-1">Late</span>
+                                        <span v-if="payment.payment && payment.payment < Math.round(loan.paymentm)"
+                                            class="text-red-800 bg-red-200 px-2 rounded-lg mr-1">Short</span>
                                     </div>
-                                    <span class="text-green-700 pr-8">{{ payment.payment?.toLocaleString() }}</span>
+                                    <span class="text-green-700 pr-8">{{
+                                            payment.payment?.toLocaleString()
+                                    }}</span>
                                 </div>
                             </td>
                             <td class="p-2">
-                                {{ payment.payment ? (payment.payment - Math.round(loan.interestm)).toLocaleString() :
-                                        ''
+                                {{ payment.payment ?
+                                        (payment.payment - Math.round(loan.interestm)).toLocaleString() : ''
                                 }}
                             </td>
                             <td class="p-2">
                                 {{ payment.payment - Math.round(loan.interestm) >= 0 ?
-                                        Math.round(loan.interestm).toLocaleString() :
-                                        ''
+                                        Math.round(loan.interestm).toLocaleString() : ''
                                 }}
                             </td>
-                            <td class="rounded-r-lg p-2">{{ payment.payment ? payment.balance?.toLocaleString() : '' }}
+                            <td class="rounded-r-lg p-2">
+                                {{ payment.payment ?
+                                        payment.balance?.toLocaleString() : ''
+                                }}
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div v-if="bal > 0" class="flex justify-end font-bold uppercase">Remaining balance: P{{
+                <div v-if="bal > 0" class="flex justify-end font-semibold uppercase">Remaining balance: P{{
                         bal.toLocaleString()
                 }}</div>
             </div>
         </div>
     </div>
 
-    <div class="lg:mt-8 mt-4 max-w-screen-2xl mx-auto px-7 lg:px-8 pb-4 group" v-if="loan">
+    <!-- Picture upload -->
+    <div class="lg:mt-8 mt-4 max-w-screen-2xl mx-auto px-6 lg:px-8 pb-4 group" v-if="loan && $page.props.auth.is_admin">
         <div class="bg-white overflow-x-auto shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div class="flex justify-between">
@@ -202,7 +246,9 @@
                                 hover:file:bg-gray-100
                                 " multiple />
                             <button :disabled="fileform.processing" type="submit"
-                                class="text-sm uppercase rounded-lg text-white font-semibold bg-gray-800 px-3">Upload</button>
+                                class="text-sm uppercase rounded-lg text-white font-semibold bg-gray-800 px-3">
+                                <span>Upload</span>
+                            </button>
                         </label>
                     </form>
                 </div>
@@ -224,7 +270,7 @@
                                 @click.self="toggleModal(pic.path, pic.id)">
                                 <Link class="uppercase text-white font-bold place-self-end
                                     inline-flex p-2 bg-red-600 hover:bg-red-500
-                                    rounded-full text-white m-3" :href="route('files.destroy', pic.id)" method="delete"
+                                    rounded-full m-3" :href="route('files.destroy', pic.id)" method="delete"
                                     as="button" preserve-scroll>
                                 <i class="bx bx-trash text-lg"></i></Link>
                             </div>
@@ -235,22 +281,79 @@
         </div>
     </div>
 
+    <!-- No active loan prompt -->
     <div class="my-8 mx-4 flex justify-center" v-else>
-        <span class="text-gray-400">No loan record</span>
+        <span class="text-gray-400">No active loan</span>
     </div>
 
+    <!-- End of loan -->
     <div class="pb-4 max-w-screen-2xl mx-auto lg:px-8 flex justify-end" v-if="loan?.is_fully_paid">
-        <Link :href="'#'" as="button"
+        <Link :href="route('loans.destroy', loan.id)" as="button" method="delete"
             class="text-red-500 text-xs uppercase font-semibold p-2 border border-red-500 rounded-lg hover:bg-red-500 hover:text-white ease-out duration-300"
-            preserve-scroll>idk what to put here lmao, shown when loan is fully paid to settle(?) the loan</Link>
+            preserve-scroll>Close account</Link>
     </div>
 
+    <!-- Image modal -->
     <ShowImage ref="showImageModal" />
+
+    <!-- Payment modal -->
+    <div>
+        <Transition enter-active-class="duration-200 ease-out" enter-from-class="transform opacity-0 scale-75"
+            enter-to-class="opacity-100 scale-100" leave-active-class="duration-200 ease-out"
+            leave-from-class="opacity-100 scale-100" leave-to-class="transform opacity-0 scale-75">
+            <div v-if="showPayment"
+                class="overflow-auto inset-0 fixed z-50 h-screen w-screen flex justify-center items-center"
+                @click.self="this.showPayment = false">
+                <div class="relative bg-white w-auto h-auto max-h-[80%] p-6 rounded-lg">
+                    <div class="flex justify-between pb-3">
+                        <span class="font-semibold text-gray-800">{{ format_dateMDY(paymentform.paymentMonth) }}</span>
+                        <button class="inline-flex rounded-full hover:bg-black/20" @click="this.showPayment = false"><i
+                                class="bx bx-x text-[25px] text-gray-600"></i></button>
+                    </div>
+                    <form @submit.prevent="paymentSubmit(paymentform.paymentId)">
+                        <div>
+                            <BreezeLabel for="payment" value="Payment" />
+                            <BreezeInput autofocus id="payment" type="text" class="mt-1 block w-full lg:w-96"
+                                v-model="paymentform.payment" />
+                            <div v-if="errors.payment" class="text-red-600">{{ errors.payment }}</div>
+                        </div>
+
+                        <div class="mt-5">
+                            <BreezeLabel for="date_paid" value="Date paid" />
+                            <BreezeInput id="date_paid" type="date" class="mt-1 block w-full lg:w-96"
+                                v-model="paymentform.date_paid" />
+                        </div>
+
+                        <div class="mt-5">
+                            <BreezeLabel for="notes" value="Notes" />
+                            <textarea name="notes" v-model="paymentform.notes" id="notes" cols="30" rows="10"
+                                class="mt-1 block w-full lg:w-96 rounded-lg text-sm text-gray-700 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
+                                style="resize: none;"></textarea>
+                        </div>
+
+                        <div>
+                            <BreezeButton class="mt-4" :class="{ 'opacity-25': paymentform.processing }"
+                                :disabled="paymentform.processing || paymentform.payment == null || paymentform.date_paid == null || Number.isSafeInteger(Number(paymentform.payment)) === false">
+                                Pay
+                            </BreezeButton>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </Transition>
+        <Transition enter-active-class="duration-200 ease opacity-0" enter-from-class="opacity-0"
+            enter-to-class="opacity-100" leave-active-class="duration-200 ease opacity-90" leave-from-class="opacity-90"
+            leave-to-class="transform opacity-0" appear>
+            <div v-if="showPayment" class="fixed inset-0 z-40 bg-black/50 backdrop-blur-md"></div>
+        </Transition>
+    </div>
 </template>
 
 
 <script>
 import BreezeButton from '@/Components/Button.vue';
+import BreezeInput from '@/Components/Input.vue';
+import BreezeLabel from '@/Components/Label.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import moment from 'moment';
 import ShowImage from '@/Components/ShowImage.vue';
@@ -261,17 +364,23 @@ export default {
         Link,
         BreezeButton,
         ShowImage,
+        BreezeInput,
+        BreezeLabel,
     },
     props: {
         lendee: Object,
         loan: Object,
         bal: Number,
         pics: Object,
+        errors: Object,
+        history: Number,
+        user: Object
     },
     data(props) {
         return {
             start_month: this.format_dateMDY(props.loan?.payments[0]?.month),
             end_month: this.format_dateMDY(props.loan?.payments[props.loan?.payments?.length - 1]?.month),
+            showPayment: false,
         }
     },
     methods: {
@@ -292,6 +401,18 @@ export default {
         },
         toggleModal(value, fileId) {
             this.$refs.showImageModal.toggleModal(value, fileId);
+        },
+        togglePayment(value) {
+            this.showPayment = true;
+            this.paymentform.paymentMonth = value.month;
+            this.paymentform.paymentId = value.id;
+            this.paymentform.payment = value.payment;
+            this.paymentform.notes = value.notes;
+            if (value.date_paid) {
+                this.paymentform.date_paid = moment(String(value.date_paid)).format('YYYY\-MM\-DD');
+            } else {
+                this.paymentform.date_paid = null;
+            }
         }
     },
     setup(props) {
@@ -309,7 +430,30 @@ export default {
             });
         }
 
-        return { fileform, submit }
+        const paymentform = useForm({
+            paymentMonth: '',
+            paymentId: '',
+            payment: '',
+            notes: '',
+            date_paid: '',
+        })
+
+        function paymentSubmit(value) {
+            paymentform.put(route('payment.update', value), {
+                preserveScroll: true,
+                preserveState: false,
+                onSuccess: () => this.showPayment = false
+            })
+        }
+
+        return { fileform, submit, paymentform, paymentSubmit }
+    },
+    created() {
+        window.addEventListener('keydown', (e) => {
+            if (e.key == 'Escape') {
+                this.showPayment = false;
+            }
+        });
     }
 }
 

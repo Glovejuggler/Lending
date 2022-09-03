@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Loan extends Model
@@ -25,6 +26,7 @@ class Loan extends Model
     ];
 
     use HasFactory;
+    use SoftDeletes;
 
     /**
      * Relations
@@ -92,10 +94,12 @@ class Loan extends Model
         $total = 0;
         $payments = Payment::where('loan_id','=',$this->id)->get();
         foreach ($payments as $payment) {
-            $total += $payment->payment;
+            if ($payment->payment == null) {
+                return false;
+            }
         }
 
-        return $total >= $this->receivable;
+        return true;
     }
 
     public function getHasLatePaymentAttribute()

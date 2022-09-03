@@ -15,12 +15,13 @@ class CreateLoansTable extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->integer('lendee_id');
+            $table->smallInteger('lendee_id');
             $table->integer('principal');
-            $table->integer('rate');
-            $table->integer('term');
-            $table->integer('amortization');
+            $table->smallInteger('rate');
+            $table->smallInteger('term');
+            $table->smallInteger('amortization');
             $table->date('maturity');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

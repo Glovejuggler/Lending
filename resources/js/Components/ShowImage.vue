@@ -65,10 +65,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.modal-open {
-    overflow: hidden;
-    position: fixed;
-}
-</style>

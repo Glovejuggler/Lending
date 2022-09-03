@@ -16,8 +16,8 @@ class SubsidiaryController extends Controller
     public function index()
     {
         return inertia('Subsidiaries/Index', [
-            'subsidiaries' => Lendee::groupBy('address')
-                                    ->selectRaw('count(*) as total, address')
+            'subsidiaries' => Lendee::groupBy('subsidiary')
+                                    ->selectRaw('count(*) as total, subsidiary')
                                     ->get(),
         ]);
     }
@@ -55,7 +55,7 @@ class SubsidiaryController extends Controller
     
         return inertia('Subsidiaries/Show', [
             'lendees' => Lendee::query()
-                                ->where('address', $subsidiary)
+                                ->where('subsidiary', $subsidiary)
                                 ->filter(Request::only('search', 'status'))
                                 ->with('loan')
                                 ->paginate(10)

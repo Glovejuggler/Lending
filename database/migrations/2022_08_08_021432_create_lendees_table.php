@@ -15,8 +15,11 @@ class CreateLendeesTable extends Migration
     {
         Schema::create('lendees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
+            $table->string('name', 64);
+            $table->string('address', 64);
+            $table->string('contact_number', 20);
+            $table->date('birthdate');
+            $table->string('subsidiary', 64);
             $table->timestamps();
         });
     }

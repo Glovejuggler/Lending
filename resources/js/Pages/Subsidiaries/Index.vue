@@ -26,12 +26,12 @@
                         <tbody>
                             <tr v-for="subsidiary in subsidiaries" class="hover:bg-neutral-200 group">
                                 <td class="rounded-l-lg">
-                                    <Link class="flex p-3" :href="route('subsidiaries.show', subsidiary.address)">
-                                    {{ subsidiary.address }}
+                                    <Link class="flex p-3" :href="route('subsidiaries.show', subsidiary.subsidiary)">
+                                    {{ subsidiary.subsidiary }}
                                     </Link>
                                 </td>
                                 <td class="rounded-r-lg">
-                                    <Link class="flex p-3" :href="route('subsidiaries.show', subsidiary.address)">
+                                    <Link class="flex p-3" :href="route('subsidiaries.show', subsidiary.subsidiary)">
                                     <span class="bg-black/10 px-2 rounded-lg">
                                         {{ subsidiary.total }}</span>
                                     </Link>

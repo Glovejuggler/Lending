@@ -10,16 +10,41 @@ class Lendee extends Model
 {
     protected $fillable = [
         'name',
-        'address'
+        'address',
+        'birthdate',
+        'contact_number',
+        'subsidiary'
+    ];
+
+    protected $appends = [
+        'has_history'
     ];
 
     use HasFactory;
+
+    public function user()
+    {
+        $user = User::where('name', $this->id + 1000000)->get();
+
+        return $user;
+    }
 
     public function loan()
     {
         return $this->hasOne(Loan::class)->latestOfMany();
     }
 
+    public function history()
+    {
+        return $this->hasMany(Loan::class)->onlyTrashed()->with('payments');
+    }
+
+    public function getHasHistoryAttribute()
+    {
+        return $this->hasMany(Loan::class)->onlyTrashed()->count();
+    }
+
+    // Search filter
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

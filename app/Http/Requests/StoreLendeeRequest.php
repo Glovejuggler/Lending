@@ -25,7 +25,10 @@ class StoreLendeeRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'address' => 'required'
+            'address' => 'required',
+            'birthdate' => 'required',
+            'contact_number' => 'required|max:20',
+            'subsidiary' => 'required|max:64'
         ];
     }
 }

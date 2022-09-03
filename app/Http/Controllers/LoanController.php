@@ -127,6 +127,8 @@ class LoanController extends Controller
      */
     public function destroy(Loan $loan)
     {
-        //
+        $loan->delete();
+
+        return redirect()->back();
     }
 }

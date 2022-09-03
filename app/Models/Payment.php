@@ -16,7 +16,7 @@ class Payment extends Model
 
     public function loan()
     {
-        return $this->belongsTo(Loan::class);
+        return $this->belongsTo(Loan::class)->withTrashed();
     }
 
     public function getPrincipalAttribute()
@@ -42,7 +42,7 @@ class Payment extends Model
             $bal -= $payment->payment;
         }
 
-        return $bal;
+        return $bal > 0 ? $bal : 0;
     }
 
     public function getIsLateAttribute()

@@ -17,12 +17,36 @@
                     <form @submit.prevent="form.post(route('lendees.store'))">
                         <div>
                             <BreezeLabel for="name" value="Name" />
-                            <BreezeInput id="name" type="text" class="mt-1 block w-96" v-model="form.name" />
+                            <BreezeInput id="name" type="text" class="mt-1 block w-full lg:w-96" v-model="form.name" />
+                            <div v-if="errors.name" class="text-red-600">{{ errors.name }}</div>
                         </div>
 
                         <div class="mt-5">
                             <BreezeLabel for="address" value="Address" />
-                            <BreezeInput id="address" type="text" class="mt-1 block w-96" v-model="form.address" />
+                            <BreezeInput id="address" type="text" class="mt-1 block w-full lg:w-96"
+                                v-model="form.address" />
+                            <div v-if="errors.address" class="text-red-600">{{ errors.address }}</div>
+                        </div>
+
+                        <div class="mt-5">
+                            <BreezeLabel for="birthdate" value="Birthdate" />
+                            <BreezeInput id="birthdate" type="date" class="mt-1 block w-full lg:w-96"
+                                v-model="form.birthdate" />
+                            <div v-if="errors.birthdate" class="text-red-600">{{ errors.birthdate }}</div>
+                        </div>
+
+                        <div class="mt-5">
+                            <BreezeLabel for="contact_number" value="Contact number" />
+                            <BreezeInput id="contact_number" type="text" class="mt-1 block w-full lg:w-96"
+                                v-model="form.contact_number" />
+                            <div v-if="errors.contact_number" class="text-red-600">{{ errors.contact_number }}</div>
+                        </div>
+
+                        <div class="mt-5">
+                            <BreezeLabel for="subsidiary" value="Subsidiary" />
+                            <BreezeInput id="subsidiary" type="text" class="mt-1 block w-full lg:w-96"
+                                v-model="form.subsidiary" />
+                            <div v-if="errors.subsidiary" class="text-red-600">{{ errors.subsidiary }}</div>
                         </div>
 
                         <div>
@@ -56,9 +80,15 @@ export default {
         const form = useForm({
             name: '',
             address: '',
+            birthdate: '',
+            subsidiary: '',
+            contact_number: ''
         })
 
         return { form }
+    },
+    props: {
+        errors: Object
     }
 }
 </script>

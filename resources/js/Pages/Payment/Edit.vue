@@ -3,7 +3,7 @@
     <Head title="Payment" />
 
     <div class="bg-white shadow">
-        <div class="max-w-screen-2xl mx-auto py-6 px-4 px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto py-6 px-6 lg:px-8">
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 my-auto">
                     Payment

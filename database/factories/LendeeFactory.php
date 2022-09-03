@@ -14,12 +14,19 @@ class LendeeFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->name,
             'address' => $this->faker->randomElement([
                 'Balayhangin', 'Bangyas', 'Dayap', 'Hanggan', 'Imok', 'Lamot 1', 'Lamot 2',
                 'Limao', 'Mabacan', 'Masiit', 'Paliparan', 'Perez', 'Kanluran', 'Silangan',
                 'Prinza', 'San Isidro', 'Santo Tomas'
             ]),
+            'subsidiary' => $this->faker->randomElement([
+                'Balayhangin', 'Bangyas', 'Dayap', 'Hanggan', 'Imok', 'Lamot 1', 'Lamot 2',
+                'Limao', 'Mabacan', 'Masiit', 'Paliparan', 'Perez', 'Kanluran', 'Silangan',
+                'Prinza', 'San Isidro', 'Santo Tomas'
+            ]),
+            'contact_number' => $this->faker->phoneNumber,
+            'birthdate' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
         ];
     }
 }

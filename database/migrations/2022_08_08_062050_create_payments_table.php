@@ -15,10 +15,11 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('loan_id');
+            $table->smallInteger('loan_id');
             $table->date('month');
             $table->integer('payment')->nullable();
             $table->date('date_paid')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

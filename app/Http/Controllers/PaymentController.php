@@ -72,7 +72,7 @@ class PaymentController extends Controller
      * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'payment' => 'required|numeric',
@@ -81,12 +81,15 @@ class PaymentController extends Controller
 
         // dd($request);
 
+        $payment = Payment::find($id);
+
         $payment->payment = $request->payment;
         $payment->date_paid = Carbon::parse($request->date_paid);
+        $payment->notes = $request->notes;
 
         $payment->update();
 
-        return redirect()->route('lendees.show', $request->lendee_id);
+        return redirect()->back();
     }
 
     /**

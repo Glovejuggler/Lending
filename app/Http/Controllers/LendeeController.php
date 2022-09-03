@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\File;
 use App\Models\Loan;
+use App\Models\User;
 use App\Models\Lendee;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Request;
@@ -55,7 +56,10 @@ class LendeeController extends Controller
     {
         $lendee = Lendee::create([
             'name' => $request->name,
-            'address' => $request->address
+            'address' => $request->address,
+            'birthdate' => $request->birthdate,
+            'contact_number' => $request->contact_number,
+            'subsidiary' => $request->subsidiary,
         ]);
 
         return redirect()->route('lendees.show', $lendee->id);
@@ -72,13 +76,28 @@ class LendeeController extends Controller
     public function show(Lendee $lendee)
     {
         $loan = Loan::where('lendee_id','=',$lendee->id)->latest()->first();
-        // dd(Storage::url('4/iroha cutout copy.png'));
 
         return inertia('Lendees/Show', [
             'lendee' => $lendee,
+            'history' => Loan::onlyTrashed()
+                                ->where('lendee_id', $lendee->id)
+                                ->count(),
             'loan' => $loan,
             'bal' => $loan?->receivable - $loan?->total_payments(),
             'pics' => File::where('loan_id', $loan?->id)->get(),
+            'user' => User::where('name', 1000000 + $lendee->id)->get(),
+        ]);
+    }
+
+    /**
+     * Shows the statement of accounts of the client
+     */
+    public function view(Lendee $lendee)
+    {
+        // dd($lendee->history);
+        return inertia('Lendees/View', [
+            'history' => $lendee->history,
+            'lendee' => $lendee
         ]);
     }
 
@@ -106,6 +125,9 @@ class LendeeController extends Controller
     {
         $lendee->name = $request->name;
         $lendee->address = $request->address;
+        $lendee->birthdate = $request->birthdate;
+        $lendee->contact_number = $request->contact_number;
+        $lendee->subsidiary = $request->subsidiary;
 
         $lendee->update();
 

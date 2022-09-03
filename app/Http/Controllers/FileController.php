@@ -40,7 +40,8 @@ class FileController extends Controller
     {
         // dd($request->file('file'));
         $request->validate([
-            'file' => 'required'
+            'file' => 'required',
+            'file.*' => 'mimes:png,jpg,gif'
         ]);
 
         foreach ($request->file as $file) {

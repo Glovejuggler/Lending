@@ -25,7 +25,7 @@
         <div class="max-w-screen-2xl mx-auto px-6 lg:px-8 lg:flex justify-between">
             <BreezeInput v-model="form.search" class="mt-1 block lg:w-96 w-full" type="text" placeholder="Search..." />
             <select v-model="form.status"
-                class="block rounded-lg text-sm text-gray-700 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-2 lg:mt-0 w-full lg:w-auto">
+                class="block rounded-lg text-sm text-gray-700 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm mt-2 lg:mt-0 w-full lg:w-auto">
                 <option value="" selected>All</option>
                 <option value="active">Active loans</option>
                 <option value="inactive">No active loans</option>
