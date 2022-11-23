@@ -11,15 +11,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/types */ "./node_modules/@babel/types/lib/index.js");
-/* harmony import */ var _babel_types__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_types__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SidebarMenuAkahon',
   components: {
-    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link
   },
   props: {
     //! Menu settings
@@ -103,11 +100,11 @@ __webpack_require__.r(__webpack_exports__);
     //! Styles
     bgColor: {
       type: String,
-      "default": '#11101d'
+      "default": 'rgb(17, 24, 39)'
     },
     secondaryColor: {
       type: String,
-      "default": '#1d1b31'
+      "default": 'rgb(17, 24, 39)'
     },
     homeSectionColor: {
       type: String,
@@ -240,9 +237,13 @@ var _hoisted_1 = {
   }
 };
 var _hoisted_2 = ["src"];
-var _hoisted_3 = {
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "logo_name"
-};
+}, " Lending ", -1
+/* HOISTED */
+);
+
 var _hoisted_4 = {
   style: {
     "display": "flex",
@@ -275,10 +276,10 @@ var _hoisted_9 = {
 };
 var _hoisted_10 = {
   key: 0,
-  "class": "profile"
+  "class": "profile dark:bg-zinc-900"
 };
 var _hoisted_11 = {
-  "class": "profile-details"
+  "class": "profile-details dark:bg-zinc-900 bg-gray-900"
 };
 var _hoisted_12 = {
   key: 0,
@@ -304,7 +305,7 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_17 = {
   key: 0,
-  "class": "bx bx-log-out",
+  "class": "dark:bg-zinc-900 bg-gray-900 bx bx-log-out",
   id: "log_out"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -312,7 +313,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return $data.width > 768 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar", $data.isOpened ? 'open' : '']),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar dark:bg-zinc-900", $data.isOpened ? 'open' : '']),
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.cssVars)
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [$props.menuLogo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
     key: 0,
@@ -326,9 +327,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bx icon", $props.menuIcon])
   }, null, 2
   /* CLASS */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.menuTitle), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  )), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bx", $data.isOpened ? 'bx-menu-alt-right' : 'bx-menu']),
     id: "btn",
     onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -341,9 +340,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: index
     }, [(_ctx.$page.props.auth.is_admin ? 1 : _ctx.$page.props.auth.is_admin == menuItem.admin) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
       href: menuItem.link,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
         'active': _ctx.$page.component.startsWith(menuItem.parent)
-      })
+      }, "dark:bg-zinc-900"])
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -400,25 +399,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "min-h-screen bg-gray-100",
+  "class": "dark"
+};
+var _hoisted_2 = {
+  "class": "min-h-screen bg-gray-100 dark:bg-zinc-800",
   style: {
     "transition": "all 0.5s ease"
   }
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "md:hidden flex"
 }, "Lamao", -1
 /* HOISTED */
 );
 
-var _hoisted_3 = {
+var _hoisted_4 = {
   id: "main"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_SidebarMenuAkahon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SidebarMenuAkahon");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SidebarMenuAkahon), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SidebarMenuAkahon), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])]);
 }
 
 /***/ }),
@@ -564,7 +566,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap);"]);
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* Google Font Link */\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Poppins', sans-serif;\n}\nmain {\r\n  transition: all 0.5s ease;\n}\n.menu-logo {\r\n  width: 30px;\r\n  margin: 0 10px 0 10px;\n}\n.sidebar {\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: column;\r\n  position: fixed;\r\n  left: 0;\r\n  top: 0;\r\n  height: 100%;\r\n  min-height: -webkit-min-content;\r\n  min-height: -moz-min-content;\r\n  min-height: min-content;\r\n  /* overflow-y: auto; */\r\n  width: 78px;\r\n  background: var(--bg-color);\r\n  /* padding: 6px 14px 0 14px; */\r\n  z-index: 30;\r\n  transition: all 0.5s ease;\n}\n.sidebar.open {\r\n  width: 250px;\n}\n.sidebar .logo-details {\r\n  height: 60px;\r\n  display: flex;\r\n  align-items: center;\r\n  position: relative;\n}\n.sidebar .logo-details .icon {\r\n  opacity: 0;\r\n  transition: all 0.5s ease;\n}\n.sidebar .logo-details .logo_name {\r\n  color: var(--logo-title-color);\r\n  font-size: 20px;\r\n  font-weight: 600;\r\n  opacity: 0;\r\n  transition: all 0.5s ease;\n}\n.sidebar.open .logo-details .icon,\r\n.sidebar.open .logo-details .logo_name {\r\n  opacity: 1;\n}\n.sidebar .logo-details #btn {\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 0;\r\n  transform: translateY(-50%);\r\n  font-size: 22px;\r\n  transition: all 0.4s ease;\r\n  font-size: 23px;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  transition: all 0.5s ease;\n}\n.sidebar.open .logo-details #btn {\r\n  text-align: right;\n}\n.sidebar i {\r\n  color: var(--icons-color);\r\n  height: 60px;\r\n  min-width: 50px;\r\n  font-size: 28px;\r\n  text-align: center;\r\n  line-height: 60px;\n}\n.sidebar .nav-list {\r\n  margin-top: 20px;\r\n  /* margin-bottom: 60px; */\r\n  /* height: 100%; */\r\n  /* min-height: min-content; */\n}\n.sidebar li {\r\n  position: relative;\r\n  margin: 8px 0;\r\n  list-style: none;\n}\n.sidebar li .tooltip {\r\n  position: absolute;\r\n  top: -20px;\r\n  left: calc(100% + 15px);\r\n  z-index: 3;\r\n  background: var(--items-tooltip-color);\r\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);\r\n  padding: 6px 12px;\r\n  border-radius: 4px;\r\n  font-size: 15px;\r\n  font-weight: 400;\r\n  opacity: 0;\r\n  white-space: nowrap;\r\n  pointer-events: none;\r\n  transition: 0s;\n}\n.sidebar li:hover .tooltip {\r\n  opacity: 1;\r\n  pointer-events: auto;\r\n  transition: all 0.4s ease;\r\n  top: 50%;\r\n  transform: translateY(-50%);\n}\n.sidebar.open li .tooltip {\r\n  display: none;\n}\n.sidebar input {\r\n  font-size: 15px;\r\n  color: var(--serach-input-text-color);\r\n  font-weight: 400;\r\n  outline: none;\r\n  height: 50px;\r\n  width: 100%;\r\n  width: 50px;\r\n  border: none;\r\n  border-radius: 12px;\r\n  transition: all 0.5s ease;\r\n  background: var(--secondary-color);\n}\n.sidebar li a {\r\n  display: flex;\r\n  height: 100%;\r\n  width: 100%;\r\n  border-radius: 12px;\r\n  align-items: center;\r\n  text-decoration: none;\r\n  transition: all 0.4s ease;\r\n  background: var(--bg-color);\n}\n.sidebar li a.active {\r\n  background: rgba(255, 255, 255, 0.2);\n}\n.sidebar li a:hover {\r\n  background: var(--menu-items-hover-color);\n}\n.sidebar li a .links_name {\r\n  color: var(--menu-items-text-color);\r\n  font-size: 15px;\r\n  font-weight: 400;\r\n  white-space: nowrap;\r\n  opacity: 0;\r\n  pointer-events: none;\r\n  transition: 0.4s;\n}\n.sidebar.open li a .links_name {\r\n  opacity: 1;\r\n  pointer-events: auto;\n}\n.sidebar li a:hover .links_name,\r\n.sidebar li a:hover i {\r\n  transition: all 0.5s ease;\r\n  color: var(--bg-color);\n}\n.sidebar li i {\r\n  height: 50px;\r\n  line-height: 50px;\r\n  font-size: 18px;\r\n  border-radius: 12px;\n}\n.sidebar div.profile {\r\n  position: relative;\r\n  height: 60px;\r\n  width: 78px;\r\n  /* left: 0;\r\n    bottom: 0; */\r\n  padding: 10px 14px;\r\n  background: var(--secondary-color);\r\n  transition: all 0.5s ease;\r\n  overflow: hidden;\n}\n.sidebar.open div.profile {\r\n  width: 250px;\n}\n.sidebar div .profile-details {\r\n  display: flex;\r\n  align-items: center;\r\n  flex-wrap: nowrap;\n}\n.sidebar div img {\r\n  height: 45px;\r\n  width: 45px;\r\n  -o-object-fit: cover;\r\n     object-fit: cover;\r\n  border-radius: 6px;\r\n  margin-right: 10px;\n}\n.sidebar div.profile .name,\r\n.sidebar div.profile .job {\r\n  font-size: 15px;\r\n  font-weight: 400;\r\n  color: var(--menu-footer-text-color);\r\n  white-space: nowrap;\n}\n.sidebar div.profile .job {\r\n  font-size: 12px;\n}\n.sidebar .profile #log_out {\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 0;\r\n  transform: translateY(-50%);\r\n  background: var(--secondary-color);\r\n  width: 100%;\r\n  height: 60px;\r\n  line-height: 60px;\r\n  border-radius: 0px;\r\n  transition: all 0.5s ease;\n}\n.sidebar.open .profile #log_out {\r\n  width: 50px;\r\n  background: var(--secondary-color);\r\n  opacity: 0;\n}\n.sidebar.open .profile:hover #log_out {\r\n  opacity: 1;\n}\n.sidebar.open .profile #log_out:hover {\r\n  opacity: 1;\r\n  color: red;\n}\n.sidebar .profile #log_out:hover {\r\n  color: red;\n}\n.home-section {\r\n  position: relative;\r\n  background: var(--home-section-color);\r\n  min-height: 100vh;\r\n  top: 0;\r\n  left: 78px;\r\n  width: calc(100% - 78px);\r\n  transition: all 0.5s ease;\r\n  z-index: 2;\n}\n.sidebar.open~.home-section {\r\n  left: 250px;\r\n  width: calc(100% - 250px);\n}\n.home-section .text {\r\n  display: inline-block;\r\n  color: var(--bg-color);\r\n  font-size: 25px;\r\n  font-weight: 500;\r\n  margin: 18px;\n}\n.my-scroll-active {\r\n  overflow-y: auto;\n}\n#my-scroll {\r\n  overflow-y: auto;\r\n  height: calc(100% - 60px);\n}\n#my-scroll::-webkit-scrollbar {\r\n  display: none;\r\n  /* background-color: rgba(255, 255, 255, 0.2); \r\n    width: 10px;\r\n    border-radius:5px  */\n}\r\n\r\n/* #my-scroll::-webkit-scrollbar-thumb{\r\n    background-color: red;\r\n    border-radius:5px \r\n  }\r\n  #my-scroll::-webkit-scrollbar-button:vertical:start:decrement{\r\n    display:none;\r\n  }\r\n  #my-scroll::-webkit-scrollbar-button:vertical:end:increment{\r\n    display:none;\r\n  } */\n@media (max-width: 420px) {\n.sidebar li .tooltip {\r\n    display: none;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* Google Font Link */\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Poppins', sans-serif;\n}\nmain {\r\n  transition: all 0.5s ease;\n}\n.menu-logo {\r\n  width: 30px;\r\n  margin: 0 10px 0 10px;\n}\n.sidebar {\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: column;\r\n  position: fixed;\r\n  left: 0;\r\n  top: 0;\r\n  height: 100%;\r\n  min-height: -webkit-min-content;\r\n  min-height: -moz-min-content;\r\n  min-height: min-content;\r\n  /* overflow-y: auto; */\r\n  width: 78px;\r\n  background: var(--bg-color);\r\n  /* padding: 6px 14px 0 14px; */\r\n  z-index: 30;\r\n  transition: all 0.5s ease;\n}\n.sidebar.open {\r\n  width: 250px;\n}\n.sidebar .logo-details {\r\n  height: 60px;\r\n  display: flex;\r\n  align-items: center;\r\n  position: relative;\n}\n.sidebar .logo-details .icon {\r\n  opacity: 0;\r\n  transition: all 0.5s ease;\n}\n.sidebar .logo-details .logo_name {\r\n  color: var(--logo-title-color);\r\n  font-size: 20px;\r\n  font-weight: 600;\r\n  opacity: 0;\r\n  transition: all 0.5s ease;\n}\n.sidebar.open .logo-details .icon,\r\n.sidebar.open .logo-details .logo_name {\r\n  opacity: 1;\n}\n.sidebar .logo-details #btn {\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 0;\r\n  transform: translateY(-50%);\r\n  font-size: 22px;\r\n  transition: all 0.4s ease;\r\n  font-size: 23px;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  transition: all 0.5s ease;\n}\n.sidebar.open .logo-details #btn {\r\n  text-align: right;\n}\n.sidebar i {\r\n  color: var(--icons-color);\r\n  height: 60px;\r\n  min-width: 50px;\r\n  font-size: 28px;\r\n  text-align: center;\r\n  line-height: 60px;\n}\n.sidebar .nav-list {\r\n  margin-top: 20px;\r\n  /* margin-bottom: 60px; */\r\n  /* height: 100%; */\r\n  /* min-height: min-content; */\n}\n.sidebar li {\r\n  position: relative;\r\n  margin: 8px 0;\r\n  list-style: none;\n}\n.sidebar li .tooltip {\r\n  position: absolute;\r\n  top: -20px;\r\n  left: calc(100% + 15px);\r\n  z-index: 3;\r\n  background: var(--items-tooltip-color);\r\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);\r\n  padding: 6px 12px;\r\n  border-radius: 4px;\r\n  font-size: 15px;\r\n  font-weight: 400;\r\n  opacity: 0;\r\n  white-space: nowrap;\r\n  pointer-events: none;\r\n  transition: 0s;\n}\n.sidebar li:hover .tooltip {\r\n  opacity: 1;\r\n  pointer-events: auto;\r\n  transition: all 0.4s ease;\r\n  top: 50%;\r\n  transform: translateY(-50%);\n}\n.sidebar.open li .tooltip {\r\n  display: none;\n}\n.sidebar input {\r\n  font-size: 15px;\r\n  color: var(--serach-input-text-color);\r\n  font-weight: 400;\r\n  outline: none;\r\n  height: 50px;\r\n  width: 100%;\r\n  width: 50px;\r\n  border: none;\r\n  border-radius: 12px;\r\n  transition: all 0.5s ease;\r\n  background: var(--secondary-color);\n}\n.sidebar li a {\r\n  display: flex;\r\n  height: 100%;\r\n  width: 100%;\r\n  border-radius: 12px;\r\n  align-items: center;\r\n  text-decoration: none;\r\n  transition: all 0.4s ease;\r\n  background: var(--bg-color);\n}\n.sidebar li a.active {\r\n  background: rgba(255, 255, 255, 0.2);\n}\n.sidebar li a:hover {\r\n  background: var(--menu-items-hover-color);\n}\n.sidebar li a .links_name {\r\n  color: var(--menu-items-text-color);\r\n  font-size: 15px;\r\n  font-weight: 400;\r\n  white-space: nowrap;\r\n  opacity: 0;\r\n  pointer-events: none;\r\n  transition: 0.4s;\n}\n.sidebar.open li a .links_name {\r\n  opacity: 1;\r\n  pointer-events: auto;\n}\n.sidebar li a:hover .links_name,\r\n.sidebar li a:hover i {\r\n  transition: all 0.5s ease;\r\n  color: var(--bg-color);\n}\n.sidebar li i {\r\n  height: 50px;\r\n  line-height: 50px;\r\n  font-size: 18px;\r\n  border-radius: 12px;\n}\n.sidebar div.profile {\r\n  position: relative;\r\n  height: 60px;\r\n  width: 78px;\r\n  /* left: 0;\r\n    bottom: 0; */\r\n  padding: 10px 14px;\r\n  /* background: var(--secondary-color); */\r\n  transition: all 0.5s ease;\r\n  overflow: hidden;\n}\n.sidebar.open div.profile {\r\n  width: 250px;\n}\n.sidebar div .profile-details {\r\n  display: flex;\r\n  align-items: center;\r\n  flex-wrap: nowrap;\n}\n.sidebar div img {\r\n  height: 45px;\r\n  width: 45px;\r\n  -o-object-fit: cover;\r\n     object-fit: cover;\r\n  border-radius: 6px;\r\n  margin-right: 10px;\n}\n.sidebar div.profile .name,\r\n.sidebar div.profile .job {\r\n  font-size: 15px;\r\n  font-weight: 400;\r\n  color: var(--menu-footer-text-color);\r\n  white-space: nowrap;\n}\n.sidebar div.profile .job {\r\n  font-size: 12px;\n}\n.sidebar .profile #log_out {\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 0;\r\n  transform: translateY(-50%);\r\n  /* background: var(--secondary-color); */\r\n  width: 100%;\r\n  height: 60px;\r\n  line-height: 60px;\r\n  border-radius: 0px;\r\n  transition: all 0.5s ease;\n}\n.sidebar.open .profile #log_out {\r\n  width: 50px;\r\n  /* background: var(--secondary-color); */\r\n  opacity: 0;\n}\n.sidebar.open .profile:hover #log_out {\r\n  opacity: 1;\n}\n.sidebar.open .profile #log_out:hover {\r\n  opacity: 1;\r\n  color: red;\n}\n.sidebar .profile #log_out:hover {\r\n  color: red;\n}\n.home-section {\r\n  position: relative;\r\n  background: var(--home-section-color);\r\n  min-height: 100vh;\r\n  top: 0;\r\n  left: 78px;\r\n  width: calc(100% - 78px);\r\n  transition: all 0.5s ease;\r\n  z-index: 2;\n}\n.sidebar.open~.home-section {\r\n  left: 250px;\r\n  width: calc(100% - 250px);\n}\n.home-section .text {\r\n  display: inline-block;\r\n  color: var(--bg-color);\r\n  font-size: 25px;\r\n  font-weight: 500;\r\n  margin: 18px;\n}\n.my-scroll-active {\r\n  overflow-y: auto;\n}\n#my-scroll {\r\n  overflow-y: auto;\r\n  height: calc(100% - 60px);\n}\n#my-scroll::-webkit-scrollbar {\r\n  display: none;\r\n  /* background-color: rgba(255, 255, 255, 0.2); \r\n    width: 10px;\r\n    border-radius:5px  */\n}\r\n\r\n/* #my-scroll::-webkit-scrollbar-thumb{\r\n    background-color: red;\r\n    border-radius:5px \r\n  }\r\n  #my-scroll::-webkit-scrollbar-button:vertical:start:decrement{\r\n    display:none;\r\n  }\r\n  #my-scroll::-webkit-scrollbar-button:vertical:end:increment{\r\n    display:none;\r\n  } */\n@media (max-width: 420px) {\n.sidebar li .tooltip {\r\n    display: none;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

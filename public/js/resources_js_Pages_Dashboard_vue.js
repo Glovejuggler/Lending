@@ -55,11 +55,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "bg-white shadow"
+  "class": "bg-white dark:bg-zinc-900"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "font-semibold text-xl text-gray-800 my-auto"
+  "class": "font-semibold text-xl text-gray-800 dark:text-white/90 my-auto"
 }, " Dashboard ")])], -1
 /* HOISTED */
 );
@@ -71,10 +71,10 @@ var _hoisted_3 = {
   "class": "max-w-7xl mx-auto p-3 lg:p-4"
 };
 var _hoisted_4 = {
-  "class": "bg-white overflow-hidden shadow-sm rounded-lg"
+  "class": "overflow-hidden shadow-sm rounded-lg"
 };
 var _hoisted_5 = {
-  "class": "px-6 pt-6 bg-teal-500 border-b border-gray-200 hover:bg-teal-600 transition ease-in-out duration-300"
+  "class": "px-6 pt-6 bg-teal-500 dark:bg-zinc-900 hover:bg-teal-600 transition ease-in-out duration-300"
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -93,10 +93,10 @@ var _hoisted_9 = {
   "class": "max-w-7xl mx-auto p-3 lg:p-4"
 };
 var _hoisted_10 = {
-  "class": "bg-white overflow-hidden shadow-sm rounded-lg"
+  "class": "overflow-hidden shadow-sm rounded-lg"
 };
 var _hoisted_11 = {
-  "class": "px-6 pt-6 bg-blue-500 border-b border-gray-200 hover:bg-blue-600 transition ease-in-out duration-300"
+  "class": "px-6 pt-6 bg-blue-500 dark:bg-zinc-900 hover:bg-blue-600 transition ease-in-out duration-300"
 };
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -115,10 +115,10 @@ var _hoisted_15 = {
   "class": "max-w-7xl mx-auto p-3 lg:p-4"
 };
 var _hoisted_16 = {
-  "class": "bg-white overflow-hidden shadow-sm rounded-lg"
+  "class": "overflow-hidden shadow-sm rounded-lg"
 };
 var _hoisted_17 = {
-  "class": "px-6 pt-6 bg-red-500 border-b border-gray-200 hover:bg-red-600 transition ease-in-out duration-300"
+  "class": "px-6 pt-6 bg-red-500 dark:bg-zinc-900 hover:bg-red-600 transition ease-in-out duration-300"
 };
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -137,10 +137,10 @@ var _hoisted_21 = {
   "class": "max-w-7xl mx-auto p-3 lg:p-4"
 };
 var _hoisted_22 = {
-  "class": "bg-white overflow-hidden shadow-sm rounded-lg"
+  "class": "overflow-hidden shadow-sm rounded-lg"
 };
 var _hoisted_23 = {
-  "class": "px-6 pt-6 bg-amber-500 border-b border-gray-200 hover:bg-amber-600 transition ease-in-out duration-300"
+  "class": "px-6 pt-6 bg-amber-500 dark:bg-zinc-900 hover:bg-amber-600 transition ease-in-out duration-300"
 };
 
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {

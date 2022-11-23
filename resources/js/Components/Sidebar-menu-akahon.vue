@@ -1,10 +1,10 @@
 <template>
-  <div v-if="width > 768" class="sidebar" :class="isOpened ? 'open' : ''" :style="cssVars">
+  <div v-if="width > 768" class="sidebar dark:bg-zinc-900" :class="isOpened ? 'open' : ''" :style="cssVars">
     <div class="logo-details" style="margin: 6px 14px 0 14px;">
       <img v-if="menuLogo" :src="menuLogo" alt="menu-logo" class="menu-logo icon">
       <i v-else class="bx icon" :class="menuIcon" />
       <div class="logo_name">
-        {{ menuTitle }}
+        Lending
       </div>
       <i class="bx" :class="isOpened ? 'bx-menu-alt-right' : 'bx-menu'" id="btn" @click="isOpened = !isOpened" />
     </div>
@@ -16,7 +16,8 @@
 
           <span v-for="(menuItem, index) in menuItems" :key="index">
             <li v-if="$page.props.auth.is_admin ? 1 : $page.props.auth.is_admin == menuItem.admin">
-              <Link :href="menuItem.link" :class="{ 'active': $page.component.startsWith(menuItem.parent) }">
+              <Link :href="menuItem.link" :class="{ 'active': $page.component.startsWith(menuItem.parent) }"
+                class="dark:bg-zinc-900">
               <i class="bx" :class="menuItem.icon || 'bx-square-rounded'" />
               <span class="links_name">{{ menuItem.name }}</span>
               </Link>
@@ -25,8 +26,8 @@
           </span>
         </ul>
       </div>
-      <div v-if="isLoggedIn" class="profile">
-        <div class="profile-details">
+      <div v-if="isLoggedIn" class="profile dark:bg-zinc-900">
+        <div class="profile-details dark:bg-zinc-900 bg-gray-900">
           <img v-if="profileImg" src="/images/photo.jpg" alt="profileImg">
           <i v-else class="bx bxs-user-rectangle" />
           <div class="name_job">
@@ -39,7 +40,7 @@
           </div>
         </div>
         <Link as="button" :href="route('logout')" method="post">
-        <i v-if="isExitButton" class="bx bx-log-out" id="log_out" />
+        <i v-if="isExitButton" class="dark:bg-zinc-900 bg-gray-900 bx bx-log-out" id="log_out" />
         </Link>
       </div>
     </div>
@@ -47,7 +48,6 @@
 </template>
 
 <script>
-import { whileStatement } from '@babel/types';
 import { Link } from '@inertiajs/inertia-vue3';
 
 export default {
@@ -142,11 +142,11 @@ export default {
     //! Styles
     bgColor: {
       type: String,
-      default: '#11101d',
+      default: 'rgb(17, 24, 39)',
     },
     secondaryColor: {
       type: String,
-      default: '#1d1b31',
+      default: 'rgb(17, 24, 39)',
     },
     homeSectionColor: {
       type: String,
@@ -433,7 +433,7 @@ main {
   /* left: 0;
     bottom: 0; */
   padding: 10px 14px;
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
   transition: all 0.5s ease;
   overflow: hidden;
 }
@@ -473,7 +473,7 @@ main {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
   width: 100%;
   height: 60px;
   line-height: 60px;
@@ -483,7 +483,7 @@ main {
 
 .sidebar.open .profile #log_out {
   width: 50px;
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
   opacity: 0;
 }
 

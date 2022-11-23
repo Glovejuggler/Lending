@@ -42,7 +42,7 @@ class Payment extends Model
             $bal -= $payment->payment;
         }
 
-        return $bal > 0 ? $bal : 0;
+        return $bal ?? 0;
     }
 
     public function getIsLateAttribute()

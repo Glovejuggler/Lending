@@ -77,14 +77,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _Components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Pagination.vue */ "./resources/js/Components/Pagination.vue");
 /* harmony import */ var _Components_Input_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Input.vue */ "./resources/js/Components/Input.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash/throttle */ "./node_modules/lodash/throttle.js");
-/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/pickBy */ "./node_modules/lodash/pickBy.js");
-/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_6__);
-
-
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/throttle */ "./node_modules/lodash/throttle.js");
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/pickBy */ "./node_modules/lodash/pickBy.js");
+/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -108,8 +104,8 @@ var __default__ = {
   watch: {
     form: {
       deep: true,
-      handler: lodash_throttle__WEBPACK_IMPORTED_MODULE_5___default()(function () {
-        this.$inertia.get('/lendees', lodash_pickBy__WEBPACK_IMPORTED_MODULE_6___default()(this.form), {
+      handler: lodash_throttle__WEBPACK_IMPORTED_MODULE_3___default()(function () {
+        this.$inertia.get('/lendees', lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default()(this.form), {
           preserveState: true,
           preserveScroll: true,
           replace: true
@@ -128,11 +124,8 @@ var __default__ = {
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       Pagination: _Components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       BreezeInput: _Components_Input_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      ref: vue__WEBPACK_IMPORTED_MODULE_3__.ref,
-      watch: vue__WEBPACK_IMPORTED_MODULE_3__.watch,
-      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia,
-      throttle: (lodash_throttle__WEBPACK_IMPORTED_MODULE_5___default()),
-      pickBy: (lodash_pickBy__WEBPACK_IMPORTED_MODULE_6___default())
+      throttle: (lodash_throttle__WEBPACK_IMPORTED_MODULE_3___default()),
+      pickBy: (lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -159,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = ["value"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
-    "class": "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm",
+    "class": "border-gray-300 dark:bg-zinc-900 dark:border-zinc-500 dark:text-white/80 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm",
     value: $props.modelValue,
     onInput: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
@@ -236,7 +229,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-white shadow"
+  "class": "bg-white dark:bg-zinc-900"
 };
 var _hoisted_2 = {
   "class": "max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
@@ -246,7 +239,7 @@ var _hoisted_3 = {
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "font-semibold text-xl text-gray-800 my-auto"
+  "class": "font-semibold text-xl text-gray-800 dark:text-white/90 my-auto"
 }, " Lendees ", -1
 /* HOISTED */
 );
@@ -270,17 +263,17 @@ var _hoisted_15 = {
   "class": "max-w-screen-2xl mx-auto px-6 lg:px-8"
 };
 var _hoisted_16 = {
-  "class": "bg-white overflow-hidden shadow-sm rounded-lg"
+  "class": "overflow-hidden shadow-sm rounded-lg"
 };
 var _hoisted_17 = {
-  "class": "p-6 bg-white border-b border-gray-200"
+  "class": "p-6 bg-white dark:bg-zinc-900"
 };
 var _hoisted_18 = {
   "class": "table-fixed w-full text-sm whitespace-nowrap"
 };
 
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
-  "class": "uppercase text-left"
+  "class": "uppercase text-left dark:text-white/90"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "px-3"
 }, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
@@ -292,7 +285,7 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_20 = {
-  "class": "hover:bg-neutral-200 group"
+  "class": "hover:bg-black/10 group dark:text-white/80 dark:hover:bg-white/10"
 };
 var _hoisted_21 = {
   "class": "rounded-l-lg"
@@ -338,7 +331,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.form.status = $event;
     }),
-    "class": "block rounded-lg text-sm text-gray-700 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm mt-2 lg:mt-0 w-full lg:w-auto"
+    "class": "block rounded-lg text-sm text-gray-700 border-gray-300 dark:bg-zinc-900 dark:border-none dark:text-white/80 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm mt-2 lg:mt-0 w-full lg:w-auto"
   }, _hoisted_13, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.form.status]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.lendees.data, function (lendee) {

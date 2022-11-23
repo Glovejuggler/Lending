@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="min-h-screen bg-gray-100" style="transition: all 0.5s ease">
+    <div class="dark">
+        <div class="min-h-screen bg-gray-100 dark:bg-zinc-800" style="transition: all 0.5s ease">
             <SidebarMenuAkahon />
             <div class="md:hidden flex">Lamao</div>
             <!-- Page Content -->

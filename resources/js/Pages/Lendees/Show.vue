@@ -7,10 +7,10 @@
     </Head>
 
     <!-- Header -->
-    <div class="bg-white shadow">
+    <div class="bg-white dark:bg-zinc-900">
         <div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between">
-                <h2 class="font-semibold text-xl text-gray-800 my-auto">
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-white/90 my-auto">
                     {{ lendee.name }}
                 </h2>
                 <div>
@@ -48,26 +48,30 @@
 
     <!-- Lendee Information -->
     <div class="lg:flex pt-12 max-w-screen-2xl mx-auto px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full">
-            <div class="p-6 bg-white border-b border-gray-200">
-                <span class="uppercase font-bold block text-gray-800 text-lg">{{ lendee.name }}</span>
+        <div class="overflow-hidden shadow-sm rounded-lg w-full">
+            <div class="p-6 bg-white dark:bg-zinc-900">
+                <span class="uppercase font-bold block text-gray-800 dark:text-white/90 text-lg">{{ lendee.name
+                }}</span>
                 <div class="lg:flex">
                     <div class="w-full lg:w-1/2">
-                        <span class="block mt-3"><i class="bx bxs-home mr-1 font-bold text-lg text-gray-800"></i>{{
+                        <span class="block dark:text-white/80 mt-3"><i
+                                class="bx bxs-home mr-1 font-bold text-lg text-gray-800 dark:text-white/90"></i>{{
                                 lendee.address
-                        }}</span>
-                        <span class="block"><i class="bx bxs-contact mr-1 font-bold text-lg text-gray-800"></i>{{
+                                }}</span>
+                        <span class="block dark:text-white/80"><i
+                                class="bx bxs-contact mr-1 font-bold text-lg text-gray-800 dark:text-white/90"></i>{{
                                 lendee.contact_number
-                        }}</span>
+                                }}</span>
                     </div>
                     <div class="w-full lg:w-1/2">
-                        <span class="block lg:mt-3"><i
-                                class="bx bxs-calendar mr-1 font-bold text-lg text-gray-800"></i>{{
-                                        format_dateMDY(lendee.birthdate)
+                        <span class="block lg:mt-3 dark:text-white/80"><i
+                                class="bx bxs-calendar mr-1 font-bold text-lg text-gray-800 dark:text-white/90"></i>{{
+                                format_dateMDY(lendee.birthdate)
                                 }}</span>
-                        <span class="block"><i class="bx bx-hive mr-1 font-bold text-lg text-gray-800"></i>{{
+                        <span class="block dark:text-white/80"><i
+                                class="bx bx-hive mr-1 font-bold text-lg text-gray-800 dark:text-white/90"></i>{{
                                 lendee.subsidiary
-                        }}</span>
+                                }}</span>
                     </div>
                 </div>
                 <div v-if="history > 0">
@@ -83,49 +87,57 @@
     <!-- Loan Information -->
     <div class="lg:flex mt-8 max-w-screen-2xl mx-auto px-6 lg:px-8" v-if="loan">
         <div class="group lg:pr-2" :class="loan ? 'lg:w-2/3' : 'lg:w-full'">
-            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="overflow-hidden shadow-sm rounded-lg">
+                <div class="p-6 bg-white dark:bg-zinc-900">
                     <div>
-                        <span class="uppercase text-gray-800 font-bold block">Loan Information</span>
-                        <span class="block text-black/60"
+                        <span class="uppercase text-gray-800 font-bold dark:text-white/90 block">Loan Information</span>
+                        <span class="block text-black/60 dark:text-white/70"
                             v-if="loan.amortization / loan.term == 1 && loan.payments.length > 1">Monthly</span>
-                        <span class="block text-black/60"
+                        <span class="block text-black/60 dark:text-white/70"
                             v-else-if="loan.amortization / loan.term == 2">Semi-monthly</span>
-                        <span class="block text-black/60" v-if="loan.payments.length == 1">One-time payment</span>
+                        <span class="block text-black/60 dark:text-white/70" v-if="loan.payments.length == 1">One-time
+                            payment</span>
                     </div>
 
                     <div class="flex mt-8">
                         <div class="w-1/2">
                             <div>
-                                <span class="text-sm uppercase font-bold text-gray-800 block">Interest
+                                <span
+                                    class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Interest
                                     Rate</span>
-                                <span class="">{{ loan?.rate }}%</span>
+                                <span class="dark:text-white/80">{{ loan?.rate }}%</span>
                             </div>
 
                             <div class="mt-4">
-                                <span class="text-sm uppercase font-bold text-gray-800 block">Term</span>
-                                <span class="">{{ loan?.term }} month{{ loan?.term > 1 ? 's' : '' }}</span>
+                                <span
+                                    class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Term</span>
+                                <span class="dark:text-white/80">{{ loan?.term }} month{{ loan?.term > 1 ? 's' : ''
+                                }}</span>
                             </div>
 
                             <div class="mt-4">
-                                <span class="text-sm uppercase font-bold text-gray-800 block">Amortization</span>
-                                <span class="">{{ loan?.amortization }}</span>
+                                <span
+                                    class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Amortization</span>
+                                <span class="dark:text-white/80">{{ loan?.amortization }}</span>
                             </div>
                         </div>
                         <div class="w-1/2">
                             <div>
-                                <span class="text-sm uppercase font-bold text-gray-800 block">Principal</span>
-                                <span class="">{{ loan?.principal.toLocaleString() }}</span>
+                                <span
+                                    class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Principal</span>
+                                <span class="dark:text-white/80">{{ loan?.principal.toLocaleString() }}</span>
                             </div>
 
                             <div class="mt-4">
-                                <span class="text-sm uppercase font-bold text-gray-800 block">Interest</span>
-                                <span class="">{{ loan?.interest.toLocaleString() }}</span>
+                                <span
+                                    class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Interest</span>
+                                <span class="dark:text-white/80">{{ loan?.interest.toLocaleString() }}</span>
                             </div>
 
                             <div class="mt-4">
-                                <span class="text-sm uppercase font-bold text-gray-800 block">Receivable</span>
-                                <span class="">{{ loan?.receivable.toLocaleString() }}</span>
+                                <span
+                                    class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Receivable</span>
+                                <span class="dark:text-white/80">{{ loan?.receivable.toLocaleString() }}</span>
                             </div>
                         </div>
                     </div>
@@ -135,26 +147,29 @@
 
         <!-- Maturity -->
         <div class="lg:w-1/3 lg:pl-2 lg:mt-0 mt-4" v-if="loan">
-            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200 flex">
+            <div class="overflow-hidden shadow-sm rounded-lg">
+                <div class="p-6 bg-white dark:bg-zinc-900 flex">
 
                     <div class="w-full">
-                        <span class="uppercase font-bold block text-gray-800">Maturity</span>
-                        <span class="">{{ start_month }} to {{ end_month }}</span>
+                        <span class="uppercase font-bold block text-gray-800 dark:text-white/90">Maturity</span>
+                        <span class="dark:text-white/80">{{ start_month }} to {{ end_month }}</span>
 
                         <div class="mt-8">
-                            <span class="text-sm uppercase font-bold text-gray-800 block">Payments</span>
-                            <span class="">{{ Math.round(loan.paymentm).toLocaleString() }}</span>
+                            <span
+                                class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Payments</span>
+                            <span class="dark:text-white/80">{{ Math.round(loan.paymentm).toLocaleString() }}</span>
                         </div>
 
                         <div class="mt-4">
-                            <span class="text-sm uppercase font-bold text-gray-800 block">Principal</span>
-                            <span class="">{{ Math.round(loan.principalm).toLocaleString() }}</span>
+                            <span
+                                class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Principal</span>
+                            <span class="dark:text-white/80">{{ Math.round(loan.principalm).toLocaleString() }}</span>
                         </div>
 
                         <div class="mt-4">
-                            <span class="text-sm uppercase font-bold text-gray-800 block">Interest</span>
-                            <span class="">{{ Math.round(loan.interestm).toLocaleString() }}</span>
+                            <span
+                                class="text-sm uppercase font-bold text-gray-800 dark:text-white/90 block">Interest</span>
+                            <span class="dark:text-white/80">{{ Math.round(loan.interestm).toLocaleString() }}</span>
                         </div>
                     </div>
                 </div>
@@ -164,12 +179,12 @@
 
     <!-- Payments -->
     <div class="lg:mt-8 mt-4 max-w-screen-2xl mx-auto px-6 lg:px-8" v-if="loan">
-        <div class="bg-white overflow-x-auto shadow-sm rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
-                <h4 class="uppercase text-gray-800 font-bold mb-4">Payments</h4>
+        <div class="overflow-x-auto shadow-sm rounded-lg">
+            <div class="p-6 bg-white dark:bg-zinc-900">
+                <h4 class="uppercase text-gray-800 dark:text-white/90 font-bold mb-4">Payments</h4>
                 <table class="table-auto w-full text-left text-sm">
                     <thead>
-                        <tr class="uppercase">
+                        <tr class="uppercase dark:text-white/90">
                             <th class="p-2">Date</th>
                             <th class="p-2">Date paid</th>
                             <th class="p-2">Principal</th>
@@ -178,12 +193,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="payment in loan.payments" class="hover:bg-black/[0.1] group">
+                        <tr v-for="payment in loan.payments"
+                            class="hover:bg-black/10 group dark:text-white/80 dark:hover:bg-white/10">
                             <td class="rounded-l-lg">
                                 <div class="flex justify-between">
                                     <span class="p-2"
                                         :class="isLate(payment.month) && payment.payment == null ? 'text-red-500' : ''">{{
-                                                format_dateMDY(payment.month)
+                                        format_dateMDY(payment.month)
                                         }}</span>
                                     <button class="text-lg invisible group-hover:visible hover:text-green-600"
                                         @click="togglePayment(payment)"><i class="bx bx-edit"></i></button>
@@ -199,41 +215,42 @@
                                             class="text-red-800 bg-red-200 px-2 rounded-lg mr-1">Short</span>
                                     </div>
                                     <span class="text-green-700 pr-8">{{
-                                            payment.payment?.toLocaleString()
+                                    payment.payment?.toLocaleString()
                                     }}</span>
                                 </div>
                             </td>
                             <td class="p-2">
                                 {{ payment.payment ?
-                                        (payment.payment - Math.round(loan.interestm)).toLocaleString() : ''
+                                (payment.payment - Math.round(loan.interestm)).toLocaleString() : ''
                                 }}
                             </td>
                             <td class="p-2">
                                 {{ payment.payment - Math.round(loan.interestm) >= 0 ?
-                                        Math.round(loan.interestm).toLocaleString() : ''
+                                Math.round(loan.interestm).toLocaleString() : ''
                                 }}
                             </td>
                             <td class="rounded-r-lg p-2">
                                 {{ payment.payment ?
-                                        payment.balance?.toLocaleString() : ''
+                                payment.balance?.toLocaleString() : ''
                                 }}
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div v-if="bal > 0" class="flex justify-end font-semibold uppercase">Remaining balance: P{{
-                        bal.toLocaleString()
-                }}</div>
+                <div v-if="bal > 0" class="flex justify-end font-semibold uppercase dark:text-white/90">Remaining
+                    balance: P{{
+                    bal.toLocaleString()
+                    }}</div>
             </div>
         </div>
     </div>
 
     <!-- Picture upload -->
     <div class="lg:mt-8 mt-4 max-w-screen-2xl mx-auto px-6 lg:px-8 pb-4 group" v-if="loan && $page.props.auth.is_admin">
-        <div class="bg-white overflow-x-auto shadow-sm rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
+        <div class="overflow-x-auto shadow-sm rounded-lg">
+            <div class="p-6 bg-white dark:bg-zinc-900">
                 <div class="flex justify-between">
-                    <span class="font-bold">Others</span>
+                    <span class="font-bold dark:text-white/90">Others</span>
                     <form @submit.prevent="submit">
                         <label class="flex">
                             <span class="sr-only">Choose files</span>
@@ -304,11 +321,13 @@
             <div v-if="showPayment"
                 class="overflow-auto inset-0 fixed z-50 h-screen w-screen flex justify-center items-center"
                 @click.self="this.showPayment = false">
-                <div class="relative bg-white w-auto h-auto max-h-[80%] p-6 rounded-lg">
+                <div class="relative bg-white dark:bg-zinc-900 w-auto h-auto max-h-[80%] p-6 rounded-lg">
                     <div class="flex justify-between pb-3">
-                        <span class="font-semibold text-gray-800">{{ format_dateMDY(paymentform.paymentMonth) }}</span>
-                        <button class="inline-flex rounded-full hover:bg-black/20" @click="this.showPayment = false"><i
-                                class="bx bx-x text-[25px] text-gray-600"></i></button>
+                        <span class="font-semibold text-gray-800 dark:text-white/90">{{
+                        format_dateMDY(paymentform.paymentMonth) }}</span>
+                        <button class="inline-flex rounded-full hover:bg-black/20 dark:hover:bg-white/20"
+                            @click="this.showPayment = false"><i
+                                class="bx bx-x text-[25px] text-gray-600 dark:text-white/70"></i></button>
                     </div>
                     <form @submit.prevent="paymentSubmit(paymentform.paymentId)">
                         <div>
@@ -327,7 +346,7 @@
                         <div class="mt-5">
                             <BreezeLabel for="notes" value="Notes" />
                             <textarea name="notes" v-model="paymentform.notes" id="notes" cols="30" rows="10"
-                                class="mt-1 block w-full lg:w-96 rounded-lg text-sm text-gray-700 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
+                                class="mt-1 block w-full lg:w-96 rounded-lg text-sm text-gray-700 dark:text-white/70 dark:bg-zinc-900 border-zinc-500 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
                                 style="resize: none;"></textarea>
                         </div>
 
